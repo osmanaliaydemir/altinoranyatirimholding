@@ -448,6 +448,11 @@ html.rtl-mode .dropdown-menu {
   color: var(--gold-300);
 }
 
+.nav-link.active {
+  color: var(--gold-300);
+  font-weight: 700;
+}
+
 .nav-link::after {
   content: '';
   position: absolute;
@@ -462,6 +467,10 @@ html.rtl-mode .dropdown-menu {
 
 .nav-link:hover::after, .nav-link.active::after {
   transform: translateX(-50%) scaleX(1);
+}
+
+.nav-link.active::after {
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
 }
 
 /* Language Switcher */

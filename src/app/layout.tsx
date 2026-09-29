@@ -51,6 +51,8 @@ export const metadata: Metadata = {
   },
 };
 
+import PageTransitionLoader from "@/components/PageTransitionLoader";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,6 +65,7 @@ export default function RootLayout({
       </head>
       <body>
         <JsonLd />
+        <PageTransitionLoader />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

@@ -233,18 +233,19 @@ export default function HeroSection() {
 
           {/* Quick Metrics HUD - Perfectly Balanced 4-Column Strip */}
           <div className="hero-metrics-hud">
-            {/* Metric 1: Consolidated Assets */}
+            {/* Metric 1: Domestic Capital & Equity Strength */}
             <div className="hud-metric-item">
               <div className="hud-val-row">
                 <span className="hud-num text-gold-pure">
-                  {t.metrics.items[0].prefix}
-                  {t.metrics.items[0].value}
+                  {lang === 'tr' ? '%100' : '100%'}
                 </span>
                 <span className="hud-suffix text-gold-300">
-                  {lang === 'tr' ? 'Milyar' : lang === 'ar' ? 'مليار' : 'Billion'}
+                  {lang === 'tr' ? 'Yerli' : lang === 'ar' ? 'وطني' : 'Capital'}
                 </span>
               </div>
-              <div className="hud-label">{t.metrics.items[0].label}</div>
+              <div className="hud-label">
+                {lang === 'tr' ? 'Yerli Sermaye & Özkaynak' : lang === 'ar' ? 'رأس مال وطني وأصول ذاتية' : 'Domestic Equity & Assets'}
+              </div>
             </div>
 
             {/* Metric 2: Strategic Sectors */}
@@ -260,30 +261,34 @@ export default function HeroSection() {
               <div className="hud-label">{t.metrics.items[1].label}</div>
             </div>
 
-            {/* Metric 3: Workforce */}
+            {/* Metric 3: Group Companies & Subsidiaries */}
             <div className="hud-metric-item">
               <div className="hud-val-row">
                 <span className="hud-num text-gold-pure">
-                  {t.metrics.items[3].value}
+                  18
                 </span>
                 <span className="hud-suffix text-gold-300">
-                  +
+                  {lang === 'tr' ? 'Şirket' : lang === 'ar' ? 'شركة' : 'Companies'}
                 </span>
               </div>
-              <div className="hud-label">{t.metrics.items[3].label}</div>
+              <div className="hud-label">
+                {lang === 'tr' ? 'Grup Şirketi & İştirak' : lang === 'ar' ? 'شركة تابعة ومجموعة' : 'Group Companies & Assets'}
+              </div>
             </div>
 
-            {/* Metric 4: Renewable Energy */}
+            {/* Metric 4: Institutional Experience & Trust */}
             <div className="hud-metric-item" style={{ borderRight: 'none' }}>
               <div className="hud-val-row">
                 <span className="hud-num" style={{ color: '#FFFFFF' }}>
-                  {t.metrics.items[4].value}
+                  40+
                 </span>
                 <span className="hud-suffix" style={{ color: '#CBD5E1' }}>
-                  MW
+                  {lang === 'tr' ? 'Yıl' : lang === 'ar' ? 'عاماً' : 'Years'}
                 </span>
               </div>
-              <div className="hud-label">{t.metrics.items[4].label}</div>
+              <div className="hud-label">
+                {lang === 'tr' ? 'Köklü Tecrübe & Güven' : lang === 'ar' ? 'سنوات من الريادة والخبرة' : 'Institutional Trust & Legacy'}
+              </div>
             </div>
           </div>
         </div>
