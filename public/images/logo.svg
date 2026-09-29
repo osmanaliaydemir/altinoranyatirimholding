@@ -38,7 +38,7 @@
   <!-- Typography -->
   <g transform="translate(108, 0)">
     <!-- ALTINORAN -->
-    <text x="0" y="47" font-family="'Plus Jakarta Sans', 'Inter', 'Cinzel', serif, sans-serif" font-size="30" font-weight="800" letter-spacing="4.5" fill="#FFFFFF">
+    <text x="0" y="47" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-size="30" font-weight="800" letter-spacing="4.5" fill="#FFFFFF">
       ALTIN<tspan fill="url(#goldGradient)">ORAN</tspan>
     </text>
     
