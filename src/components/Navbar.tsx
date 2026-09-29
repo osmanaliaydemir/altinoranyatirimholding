@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
@@ -10,13 +10,40 @@ export default function Navbar() {
   const { lang, setLang, t, isRTL } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
+
+  const languages: { code: Language; label: string; full: string; flag: string }[] = [
+    { code: 'tr', label: 'TR', full: 'Türkçe', flag: '🇹🇷' },
+    { code: 'en', label: 'EN', full: 'English', flag: '🇬🇧' },
+    { code: 'ar', label: 'AR', full: 'العربية', flag: '🇸🇦' },
+  ];
+
+  const currentLang = languages.find((l) => l.code === lang) || languages[0];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
+    const handleClickOutside = (event: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(event.target as Node)) {
+        setLangDropdownOpen(false);
+      }
+    };
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setLangDropdownOpen(false);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
   }, []);
 
   const navLinks = [
@@ -27,6 +54,7 @@ export default function Navbar() {
     { label: t.nav.investor, href: '/investor-relations/' },
     { label: t.nav.sustainability, href: '/sustainability/' },
     { label: t.nav.media, href: '/media/' },
+    { label: t.nav.contact, href: '/contact/' },
   ];
 
   return (
@@ -64,31 +92,129 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Action Controls: Lang Switcher & Contact Button */}
+        {/* Action Controls: Lang Select & Contact Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          {/* 3-Language Switcher */}
-          <div className="lang-switcher" aria-label="Language Selector">
+          {/* Custom Select Language Dropdown */}
+          <div ref={langRef} style={{ position: 'relative' }}>
             <button
-              onClick={() => setLang('tr')}
-              className={`lang-btn ${lang === 'tr' ? 'active' : ''}`}
-              title="Türkçe"
+              type="button"
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              className="lang-select-btn"
+              aria-label="Language Selector"
+              aria-haspopup="listbox"
+              aria-expanded={langDropdownOpen}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                height: '38px',
+                padding: '0 14px',
+                background: 'rgba(15, 25, 46, 0.75)',
+                border: '1px solid rgba(212, 175, 55, 0.35)',
+                borderRadius: '8px',
+                color: '#FFFFFF',
+                fontSize: '0.84rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all var(--transition-fast)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+              }}
             >
-              TR
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-400)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span>{currentLang.flag} {currentLang.label}</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  transform: langDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.2s ease',
+                  color: 'var(--gold-300)',
+                }}
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
             </button>
-            <button
-              onClick={() => setLang('en')}
-              className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
-              title="English"
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLang('ar')}
-              className={`lang-btn ${lang === 'ar' ? 'active' : ''}`}
-              title="العربية"
-            >
-              AR
-            </button>
+
+            {/* Dropdown Menu */}
+            {langDropdownOpen && (
+              <div
+                role="listbox"
+                className="lang-dropdown-menu"
+                style={{
+                  position: 'absolute',
+                  top: 'calc(100% + 8px)',
+                  right: isRTL ? 'auto' : 0,
+                  left: isRTL ? 0 : 'auto',
+                  minWidth: '155px',
+                  background: 'rgba(10, 16, 29, 0.96)',
+                  border: '1px solid rgba(212, 175, 55, 0.4)',
+                  borderRadius: '10px',
+                  padding: '6px',
+                  boxShadow: '0 14px 34px rgba(0, 0, 0, 0.75)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  zIndex: 1001,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '3px',
+                }}
+              >
+                {languages.map((item) => {
+                  const isActive = lang === item.code;
+                  return (
+                    <button
+                      key={item.code}
+                      type="button"
+                      role="option"
+                      aria-selected={isActive}
+                      onClick={() => {
+                        setLang(item.code);
+                        setLangDropdownOpen(false);
+                      }}
+                      className="lang-dropdown-item"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: '10px',
+                        width: '100%',
+                        padding: '8px 12px',
+                        borderRadius: '6px',
+                        background: isActive ? 'rgba(212, 175, 55, 0.16)' : 'transparent',
+                        border: 'none',
+                        color: isActive ? 'var(--gold-300)' : '#CBD5E1',
+                        fontSize: '0.84rem',
+                        fontWeight: isActive ? 700 : 500,
+                        cursor: 'pointer',
+                        textAlign: isRTL ? 'right' : 'left',
+                        transition: 'all 0.15s ease',
+                      }}
+                    >
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span>{item.flag}</span>
+                        <span>{item.full}</span>
+                      </span>
+                      {isActive && (
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold-400)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* CTA Button */}
@@ -96,7 +222,8 @@ export default function Navbar() {
             href="/contact/"
             className="btn btn-primary cta-btn"
             style={{
-              padding: '8px 16px',
+              height: '38px',
+              padding: '0 16px',
               fontSize: '0.84rem',
               borderRadius: '8px',
               fontWeight: 700,
@@ -168,7 +295,36 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <div style={{ marginTop: '12px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+          {/* Mobile Language Selector & CTA */}
+          <div style={{ marginTop: '12px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 0' }}>
+              <span style={{ fontSize: '0.9rem', color: '#94A3B8' }}>Dil / Language / اللغة:</span>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                {languages.map((item) => (
+                  <button
+                    key={item.code}
+                    type="button"
+                    onClick={() => {
+                      setLang(item.code);
+                      setMobileMenuOpen(false);
+                    }}
+                    style={{
+                      padding: '6px 12px',
+                      borderRadius: '6px',
+                      border: lang === item.code ? '1px solid var(--gold-400)' : '1px solid rgba(255,255,255,0.15)',
+                      background: lang === item.code ? 'var(--gradient-gold)' : 'rgba(15,25,46,0.8)',
+                      color: lang === item.code ? '#060911' : '#FFFFFF',
+                      fontSize: '0.82rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {item.flag} {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <Link
               href="/contact/"
               onClick={() => setMobileMenuOpen(false)}
@@ -182,6 +338,15 @@ export default function Navbar() {
       )}
 
       <style jsx>{`
+        .lang-select-btn:hover {
+          border-color: var(--gold-400) !important;
+          background: rgba(212, 175, 55, 0.14) !important;
+          box-shadow: 0 4px 18px rgba(212, 175, 55, 0.25);
+        }
+        .lang-dropdown-item:hover {
+          background: rgba(212, 175, 55, 0.18) !important;
+          color: #FFFFFF !important;
+        }
         @media (min-width: 1140px) {
           .desktop-nav {
             display: flex !important;
