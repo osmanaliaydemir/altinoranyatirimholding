@@ -27,35 +27,45 @@ export default function Navbar() {
     { label: t.nav.investor, href: '/investor-relations/' },
     { label: t.nav.sustainability, href: '/sustainability/' },
     { label: t.nav.media, href: '/media/' },
-    { label: t.nav.contact, href: '/contact/' },
   ];
 
   return (
     <header className={`header-glass ${scrolled ? 'header-scrolled' : ''}`}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%' }}>
         {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', gap: '12px' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <Image
             src="/images/logo.svg"
             alt="Altınoran Yatırım Holding"
-            width={240}
-            height={52}
+            width={210}
+            height={46}
             priority
-            style={{ width: 'auto', height: '44px', objectFit: 'contain' }}
+            style={{ width: 'auto', height: '38px', objectFit: 'contain' }}
           />
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav style={{ display: 'none', gap: '6px', alignItems: 'center' }} className="desktop-nav">
+        <nav style={{ display: 'none', gap: 'clamp(10px, 1.4vw, 20px)', alignItems: 'center' }} className="desktop-nav">
           {navLinks.map((item, idx) => (
-            <Link key={idx} href={item.href} className="nav-link">
+            <Link
+              key={idx}
+              href={item.href}
+              className="nav-link"
+              style={{
+                whiteSpace: 'nowrap',
+                fontSize: '0.86rem',
+                fontWeight: 500,
+                letterSpacing: '0.01em',
+                padding: '6px 4px',
+              }}
+            >
               {item.label}
             </Link>
           ))}
         </nav>
 
         {/* Action Controls: Lang Switcher & Contact Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           {/* 3-Language Switcher */}
           <div className="lang-switcher" aria-label="Language Selector">
             <button
@@ -82,9 +92,19 @@ export default function Navbar() {
           </div>
 
           {/* CTA Button */}
-          <Link href="/contact/" className="btn btn-primary cta-btn" style={{ padding: '9px 20px', fontSize: '0.88rem' }}>
+          <Link
+            href="/contact/"
+            className="btn btn-primary cta-btn"
+            style={{
+              padding: '8px 16px',
+              fontSize: '0.84rem',
+              borderRadius: '8px',
+              fontWeight: 700,
+              gap: '6px',
+            }}
+          >
             <span>{t.nav.getInTouch}</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
@@ -162,7 +182,7 @@ export default function Navbar() {
       )}
 
       <style jsx>{`
-        @media (min-width: 1024px) {
+        @media (min-width: 1140px) {
           .desktop-nav {
             display: flex !important;
           }

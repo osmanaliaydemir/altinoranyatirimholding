@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function HeroSection() {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, lang } = useLanguage();
 
   return (
     <section
@@ -16,7 +16,8 @@ export default function HeroSection() {
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        paddingTop: 'var(--nav-height)',
+        paddingTop: 'calc(var(--nav-height) + 20px)',
+        paddingBottom: '60px',
         overflow: 'hidden',
       }}
     >
@@ -43,13 +44,14 @@ export default function HeroSection() {
             filter: 'brightness(0.55) contrast(1.1)',
           }}
         />
-        {/* Gradients */}
+        {/* Layered dark gradients for crystal-clear readability */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background:
-              'linear-gradient(180deg, rgba(6, 9, 17, 0.7) 0%, rgba(6, 9, 17, 0.85) 65%, #060911 100%)',
+            background: isRTL
+              ? 'linear-gradient(270deg, rgba(6, 9, 17, 0.95) 0%, rgba(6, 9, 17, 0.85) 50%, rgba(6, 9, 17, 0.35) 100%)'
+              : 'linear-gradient(90deg, rgba(6, 9, 17, 0.95) 0%, rgba(6, 9, 17, 0.85) 50%, rgba(6, 9, 17, 0.35) 100%)',
           }}
         />
         <div
@@ -57,7 +59,15 @@ export default function HeroSection() {
             position: 'absolute',
             inset: 0,
             background:
-              'radial-gradient(circle at 75% 40%, rgba(212, 175, 55, 0.12) 0%, transparent 60%)',
+              'linear-gradient(180deg, rgba(6, 9, 17, 0.4) 0%, transparent 40%, rgba(6, 9, 17, 0.8) 80%, #060911 100%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'radial-gradient(circle at 75% 45%, rgba(212, 175, 55, 0.1) 0%, transparent 60%)',
           }}
         />
       </div>
@@ -66,13 +76,13 @@ export default function HeroSection() {
       <div
         style={{
           position: 'absolute',
-          right: isRTL ? 'auto' : '-10%',
-          left: isRTL ? '-10%' : 'auto',
-          top: '18%',
-          width: '640px',
-          height: '640px',
+          right: isRTL ? 'auto' : '-5%',
+          left: isRTL ? '-5%' : 'auto',
+          top: '20%',
+          width: '560px',
+          height: '560px',
           pointerEvents: 'none',
-          opacity: 0.18,
+          opacity: 0.08,
           zIndex: 1,
         }}
         className="animate-spin-slow"
@@ -89,18 +99,28 @@ export default function HeroSection() {
         </svg>
       </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 2, paddingTop: '40px', paddingBottom: '60px' }}>
-        <div style={{ maxWidth: '820px' }}>
-          {/* Golden Badge */}
-          <div style={{ marginBottom: '24px' }}>
-            <span className="badge" style={{ padding: '8px 18px', fontSize: '0.85rem' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+        <div style={{ maxWidth: '920px' }}>
+          {/* Golden Pill Badge */}
+          <div style={{ marginBottom: '22px' }}>
+            <span
+              className="badge"
+              style={{
+                padding: '8px 18px',
+                fontSize: '0.82rem',
+                letterSpacing: '0.08em',
+                background: 'rgba(212, 175, 55, 0.08)',
+                border: '1px solid rgba(212, 175, 55, 0.35)',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
+              }}
+            >
               <span
                 style={{
-                  width: '8px',
-                  height: '8px',
+                  width: '7px',
+                  height: '7px',
                   borderRadius: '50%',
                   background: 'var(--gold-400)',
-                  boxShadow: '0 0 10px var(--gold-400)',
+                  boxShadow: '0 0 8px var(--gold-400)',
                   display: 'inline-block',
                 }}
               />
@@ -108,48 +128,102 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* Main Hero Title */}
+          {/* Main Hero Title - Crisp, Modern & Orderly */}
           <h1
             style={{
-              fontSize: 'clamp(2.6rem, 5.5vw, 4.4rem)',
-              lineHeight: 1.12,
-              marginBottom: '24px',
-              textShadow: '0 4px 20px rgba(0,0,0,0.5)',
+              fontSize: 'clamp(2.4rem, 4.8vw, 4.1rem)',
+              lineHeight: 1.15,
+              marginBottom: '22px',
+              fontWeight: 800,
+              letterSpacing: '-0.025em',
+              textShadow: '0 4px 24px rgba(0,0,0,0.7)',
             }}
           >
             {t.hero.title1}{' '}
-            <span className="text-gold-pure" style={{ textDecoration: 'underline', textDecorationColor: 'rgba(212,175,55,0.4)', textUnderlineOffset: '8px' }}>
+            <span
+              className="text-gold-pure"
+              style={{
+                position: 'relative',
+                display: 'inline-block',
+              }}
+            >
               {t.hero.title2}
             </span>{' '}
             <br />
             {t.hero.title3}
           </h1>
 
-          {/* Subtitle */}
+          {/* Executive Subtitle */}
           <p
             className="lead-text"
             style={{
-              fontSize: 'clamp(1.1rem, 2vw, 1.35rem)',
-              marginBottom: '38px',
+              fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)',
+              lineHeight: 1.7,
+              marginBottom: '36px',
               maxWidth: '720px',
-              color: '#E2E8F0',
+              color: '#CBD5E1',
+              fontWeight: 350,
             }}
           >
             {t.hero.subtitle}
           </p>
 
           {/* Action CTAs */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center', marginBottom: '56px' }}>
-            <Link href="/sectors/" className="btn btn-primary" style={{ padding: '16px 34px', fontSize: '1.02rem' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '16px',
+              alignItems: 'center',
+              marginBottom: '48px',
+            }}
+          >
+            <Link
+              href="/sectors/"
+              className="btn btn-primary"
+              style={{
+                height: '52px',
+                padding: '0 32px',
+                fontSize: '0.98rem',
+                borderRadius: '10px',
+              }}
+            >
               <span>{t.hero.discoverBtn}</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </Link>
 
-            <Link href="/investor-relations/" className="btn btn-outline" style={{ padding: '16px 30px', fontSize: '1.02rem' }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-400)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <Link
+              href="/investor-relations/"
+              className="btn btn-outline"
+              style={{
+                height: '52px',
+                padding: '0 28px',
+                fontSize: '0.98rem',
+                borderRadius: '10px',
+              }}
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--gold-400)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
                 <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
               </svg>
@@ -157,47 +231,154 @@ export default function HeroSection() {
             </Link>
           </div>
 
-          {/* Quick Metrics Bar directly inside Hero */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-              gap: '20px',
-              padding: '24px 28px',
-              background: 'rgba(10, 16, 29, 0.7)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
-              borderRadius: 'var(--radius-lg)',
-              boxShadow: '0 12px 36px rgba(0,0,0,0.5)',
-            }}
-          >
-            <div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--gold-300)', fontFamily: 'var(--font-serif)' }}>
-                ₺18.4 <span style={{ fontSize: '1rem', fontWeight: 600 }}>Milyar / Bn</span>
+          {/* Quick Metrics HUD - Perfectly Balanced 4-Column Strip */}
+          <div className="hero-metrics-hud">
+            {/* Metric 1: Consolidated Assets */}
+            <div className="hud-metric-item">
+              <div className="hud-val-row">
+                <span className="hud-num text-gold-pure">
+                  {t.metrics.items[0].prefix}
+                  {t.metrics.items[0].value}
+                </span>
+                <span className="hud-suffix text-gold-300">
+                  {lang === 'tr' ? 'Milyar' : lang === 'ar' ? 'مليار' : 'Billion'}
+                </span>
               </div>
-              <div style={{ fontSize: '0.85rem', color: '#94A3B8' }}>{t.metrics.items[0].label}</div>
+              <div className="hud-label">{t.metrics.items[0].label}</div>
             </div>
-            <div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#FFFFFF', fontFamily: 'var(--font-serif)' }}>
-                6 <span style={{ fontSize: '1rem', fontWeight: 600 }}>Sektör / Sectors</span>
+
+            {/* Metric 2: Strategic Sectors */}
+            <div className="hud-metric-item">
+              <div className="hud-val-row">
+                <span className="hud-num" style={{ color: '#FFFFFF' }}>
+                  {t.metrics.items[1].value}
+                </span>
+                <span className="hud-suffix" style={{ color: '#CBD5E1' }}>
+                  {lang === 'tr' ? 'Sektör' : lang === 'ar' ? 'قطاعات' : 'Sectors'}
+                </span>
               </div>
-              <div style={{ fontSize: '0.85rem', color: '#94A3B8' }}>{t.metrics.items[1].label}</div>
+              <div className="hud-label">{t.metrics.items[1].label}</div>
             </div>
-            <div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--gold-300)', fontFamily: 'var(--font-serif)' }}>
-                4.200+
+
+            {/* Metric 3: Workforce */}
+            <div className="hud-metric-item">
+              <div className="hud-val-row">
+                <span className="hud-num text-gold-pure">
+                  {t.metrics.items[3].value}
+                </span>
+                <span className="hud-suffix text-gold-300">
+                  +
+                </span>
               </div>
-              <div style={{ fontSize: '0.85rem', color: '#94A3B8' }}>{t.metrics.items[3].label}</div>
+              <div className="hud-label">{t.metrics.items[3].label}</div>
             </div>
-            <div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#FFFFFF', fontFamily: 'var(--font-serif)' }}>
-                450 <span style={{ fontSize: '1rem', fontWeight: 600 }}>MW</span>
+
+            {/* Metric 4: Renewable Energy */}
+            <div className="hud-metric-item" style={{ borderRight: 'none' }}>
+              <div className="hud-val-row">
+                <span className="hud-num" style={{ color: '#FFFFFF' }}>
+                  {t.metrics.items[4].value}
+                </span>
+                <span className="hud-suffix" style={{ color: '#CBD5E1' }}>
+                  MW
+                </span>
               </div>
-              <div style={{ fontSize: '0.85rem', color: '#94A3B8' }}>{t.metrics.items[4].label}</div>
+              <div className="hud-label">{t.metrics.items[4].label}</div>
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .hero-metrics-hud {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0;
+          padding: 20px 24px;
+          background: rgba(10, 16, 29, 0.78);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(212, 175, 55, 0.28);
+          border-radius: var(--radius-lg);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+          width: 100%;
+          max-width: 860px;
+        }
+
+        .hud-metric-item {
+          padding: 0 18px;
+          border-right: 1px solid rgba(255, 255, 255, 0.08);
+          display: flex;
+          flex-direction: column;
+          justifyContent: center;
+        }
+
+        :global(html.rtl-mode) .hud-metric-item {
+          border-right: none;
+          border-left: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        :global(html.rtl-mode) .hud-metric-item:last-child {
+          border-left: none;
+        }
+
+        .hud-val-row {
+          display: flex;
+          align-items: baseline;
+          gap: 6px;
+          margin-bottom: 4px;
+        }
+
+        .hud-num {
+          font-size: 1.85rem;
+          font-weight: 800;
+          font-family: var(--font-display);
+          line-height: 1;
+          letter-spacing: -0.02em;
+        }
+
+        .hud-suffix {
+          font-size: 0.95rem;
+          font-weight: 600;
+        }
+
+        .hud-label {
+          font-size: 0.8rem;
+          color: #94A3B8;
+          font-weight: 500;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        @media (max-width: 900px) {
+          .hero-metrics-hud {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px 0;
+            padding: 20px 16px;
+          }
+          .hud-metric-item:nth-child(2) {
+            border-right: none;
+          }
+          :global(html.rtl-mode) .hud-metric-item:nth-child(2) {
+            border-left: none;
+          }
+          .hud-metric-item:nth-child(3),
+          .hud-metric-item:nth-child(4) {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 16px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hud-num {
+            font-size: 1.55rem;
+          }
+          .hud-label {
+            font-size: 0.74rem;
+          }
+        }
+      `}</style>
     </section>
   );
 }
