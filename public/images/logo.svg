@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 100" fill="none">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C07B" />
+      <stop offset="35%" stop-color="#F3E5AB" />
+      <stop offset="70%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#AA771C" />
+    </linearGradient>
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#F3E5AB" />
+    </linearGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Golden Ratio Spiral Emblem (Fibonacci Golden Spiral in stylized geometric lines) -->
+  <g transform="translate(15, 10)">
+    <!-- Golden Geometric Outer Ring -->
+    <circle cx="40" cy="40" r="38" stroke="url(#goldGradient)" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="2 4" />
+    <circle cx="40" cy="40" r="32" stroke="url(#goldGradient)" stroke-width="1.8" />
+    
+    <!-- Stylized Golden Ratio Spiral / Phi Symbol Structure -->
+    <path d="M 40 10 A 30 30 0 0 1 70 40 A 20 20 0 0 1 50 60 A 13.5 13.5 0 0 1 36.5 46.5 A 8.5 8.5 0 0 1 45 38 A 5 5 0 0 1 45 43" 
+          stroke="url(#goldGradient)" stroke-width="2.6" stroke-linecap="round" fill="none" filter="url(#goldGlow)" />
+    
+    <!-- Central Golden Core / Light -->
+    <circle cx="43" cy="41" r="2.5" fill="url(#goldGradient)" />
+    
+    <!-- Geometric Golden Ratio Division Lines -->
+    <line x1="16" y1="40" x2="64" y2="40" stroke="url(#goldGradient)" stroke-width="1" stroke-opacity="0.4" />
+    <line x1="40" y1="16" x2="40" y2="64" stroke="url(#goldGradient)" stroke-width="1" stroke-opacity="0.4" />
+    <polygon points="40,14 43,21 37,21" fill="url(#goldGradient)" />
+  </g>
+
+  <!-- Typography -->
+  <g transform="translate(108, 0)">
+    <!-- ALTINORAN -->
+    <text x="0" y="47" font-family="'Plus Jakarta Sans', 'Inter', 'Cinzel', serif, sans-serif" font-size="30" font-weight="800" letter-spacing="4.5" fill="#FFFFFF">
+      ALTIN<tspan fill="url(#goldGradient)">ORAN</tspan>
+    </text>
+    
+    <!-- Subtitle: YATIRIM HOLDİNG -->
+    <text x="1.5" y="70" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-size="11" font-weight="600" letter-spacing="8" fill="url(#goldGradient)">
+      YATIRIM HOLDİNG
+    </text>
+
+    <!-- Golden Divider Line with Ratio Indicator -->
+    <line x1="1" y1="79" x2="280" y2="79" stroke="url(#goldAccent)" stroke-width="1" stroke-opacity="0.6" />
+    <circle cx="173" cy="79" r="2" fill="url(#goldGradient)" />
+  </g>
+</svg>
