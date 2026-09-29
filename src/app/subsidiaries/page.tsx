@@ -34,6 +34,7 @@ export default function SubsidiariesPage() {
       <Navbar />
       <main>
         <PageBanner
+          pageKey="subsidiaries"
           tag="Ekosistemimiz"
           title="18 Grup Şirketi ve Güçlü İştirak Portföyü"
           description="Her biri kendi pazarında liderlik hedefleyen, kurumsal yönetim standartlarımızla güçlendirilen iştirak yapımız."

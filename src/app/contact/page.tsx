@@ -33,6 +33,7 @@ export default function ContactPage() {
       <Navbar />
       <main>
         <PageBanner
+          pageKey="contact"
           tag="Bize Ulaşın"
           title="Merkez Ofisimiz ve İletişim Kanalları"
           description="Kurumsal ortaklıklar, yatırım talepleri ve sorularınız için Maslak Finans Merkezi’ndeki genel merkezimizle bağlantıya geçebilirsiniz."

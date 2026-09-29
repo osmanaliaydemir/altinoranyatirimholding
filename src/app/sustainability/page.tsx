@@ -33,6 +33,7 @@ export default function SustainabilityPage() {
       <Navbar />
       <main>
         <PageBanner
+          pageKey="sustainability"
           tag="ESG & Gelecek"
           title="Gelecek Nesillere Karşı Sorumlu, Sürdürülebilir Bir Dünya"
           description="Çevresel duyarlılık, toplumsal fayda ve şeffaf kurumsal yönetişimi tüm yatırımlarımızın merkezine yerleştiriyoruz."

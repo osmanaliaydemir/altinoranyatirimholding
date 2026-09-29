@@ -34,6 +34,7 @@ export default function SectorsPage() {
       <Navbar />
       <main>
         <PageBanner
+          pageKey="sectors"
           tag="Stratejik Portföy"
           title="Geleceğin Dinamiklerine Yön Veren 6 Temel Sektör"
           description="Altın oran dengesiyle yönettiğimiz stratejik iş kollarımızda yüksek katma değer, sürdürülebilir nakit akışı ve küresel rekabet avantajı inşa ediyoruz."

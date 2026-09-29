@@ -33,6 +33,7 @@ export default function MediaPage() {
       <Navbar />
       <main>
         <PageBanner
+          pageKey="media"
           tag="Medya Odası"
           title="Haberler, Basın Bültenleri ve Medya Kiti"
           description="Altınoran Yatırım Holding ve iştiraklerimizin en güncel yatırım adımları, kurumsal açıklamaları ve basın materyalleri."

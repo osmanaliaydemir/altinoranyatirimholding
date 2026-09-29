@@ -35,6 +35,7 @@ export default function AboutPage() {
       <Navbar />
       <main>
         <PageBanner
+          pageKey="about"
           tag="Kurumsal Kimlik & Vizyon"
           title="Geleceğe Güvenle Bakan Köklü Bir Yatırım Mirası"
           description="Altınoran Yatırım Holding, evrenin mükemmel uyumu olan altın orandan ilham alarak kurumsal disiplin ve reel sektör gücünü bir araya getiriyor."

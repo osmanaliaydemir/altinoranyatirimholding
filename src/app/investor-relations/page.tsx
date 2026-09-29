@@ -33,6 +33,7 @@ export default function InvestorRelationsPage() {
       <Navbar />
       <main>
         <PageBanner
+          pageKey="investor"
           tag="Finansal Şeffaflık"
           title="Yatırımcı İlişkileri & Kurumsal Yönetişim"
           description="Uluslararası standartlarda bağımsız denetimden geçen finansal tablolarımız, faaliyet raporlarımız ve paydaş değerini artıran yönetim modelimiz."

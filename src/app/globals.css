@@ -145,6 +145,13 @@ h1, h2, h3, h4, .font-serif {
   display: inline-block;
 }
 
+h1.text-gold-gradient,
+h2.text-gold-gradient,
+h3.text-gold-gradient,
+.section-title.text-gold-gradient {
+  display: block;
+}
+
 .text-gold-pure {
   background: var(--gradient-gold);
   -webkit-background-clip: text;
