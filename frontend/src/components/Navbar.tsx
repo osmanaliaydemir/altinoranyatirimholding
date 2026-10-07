@@ -206,12 +206,12 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <Image
-            src="/images/logo.svg"
+            src="/images/logo.webp"
             alt="Altınoran Yatırım Holding"
-            width={210}
-            height={46}
+            width={240}
+            height={50}
             priority
-            style={{ width: 'auto', height: '38px', objectFit: 'contain' }}
+            style={{ width: 'auto', height: '48px', objectFit: 'contain' }}
           />
         </Link>
 

@@ -44,11 +44,11 @@ export default function Footer() {
           <div>
             <div style={{ marginBottom: '20px' }}>
               <Image
-                src="/images/logo.svg"
+                src="/images/logo.webp"
                 alt="Altınoran Yatırım Holding"
-                width={220}
-                height={48}
-                style={{ width: 'auto', height: '42px', objectFit: 'contain' }}
+                width={260}
+                height={54}
+                style={{ width: 'auto', height: '52px', objectFit: 'contain' }}
               />
             </div>
             <p style={{ color: '#94A3B8', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '24px' }}>

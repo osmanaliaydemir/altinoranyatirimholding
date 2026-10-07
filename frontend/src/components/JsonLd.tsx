@@ -7,14 +7,14 @@ export default function JsonLd() {
     name: 'Altınoran Yatırım Holding A.Ş.',
     alternateName: ['Altınoran Holding', 'Altinoran Investment Holding'],
     url: 'https://altinoranyatirimholding.com.tr',
-    logo: 'https://altinoranyatirimholding.com.tr/images/logo.svg',
+    logo: 'https://altinoranyatirimholding.com.tr/images/logo.webp',
     image: 'https://altinoranyatirimholding.com.tr/images/headquarters.jpg',
     description:
-      'Altınoran Yatırım Holding; gayrimenkul, yenilenebilir enerji, finansal hizmetler, girişim sermayesi, ileri teknoloji ve küresel lojistikte sürdürülebilir değer üreten öncü yatırım grubudur.',
+      'Altınoran Yatırım Holding; gayrimenkul, inşaat, sağlık, akaryakıt, bilişim ve dış ticarette sürdürülebilir değer üreten öncü yatırım grubudur.',
     foundingDate: '2011',
     founder: {
       '@type': 'Person',
-      name: 'Osman Aydemir',
+      name: 'Hanifi Tekin',
       jobTitle: 'Yönetim Kurulu Başkanı',
     },
     address: {
