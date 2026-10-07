@@ -159,7 +159,7 @@ export default function Navbar() {
         {
           label: lang === 'tr' ? 'İştirakler & Grup Şirketleri' : lang === 'ar' ? 'الشركات التابعة' : 'Group Companies & Subsidiaries',
           href: '/subsidiaries/',
-          desc: lang === 'tr' ? '18 operasyonel lider grup şirketi' : lang === 'ar' ? '18 شركة رائدة في أسواقها الإقليمية' : '18 market-leading operating enterprises',
+          desc: lang === 'tr' ? '10 dinamik lider grup şirketi' : lang === 'ar' ? '10 شركات رائدة في أسواقها' : '10 market-leading operating enterprises',
           icon: (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
@@ -169,11 +169,6 @@ export default function Navbar() {
           ),
         },
       ],
-    },
-    {
-      id: 'investor',
-      label: t.nav.investor,
-      href: '/investor-relations/',
     },
     {
       id: 'mediaContact',

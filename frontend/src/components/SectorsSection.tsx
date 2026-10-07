@@ -12,11 +12,11 @@ export default function SectorsSection() {
 
   const sectorImages: Record<string, string> = {
     gayrimenkul: '/images/headquarters.jpg',
-    enerji: '/images/energy.jpg',
-    finans: '/images/boardroom.jpg',
-    teknoloji: '/images/headquarters.jpg',
-    saglik: '/images/boardroom.jpg',
-    lojistik: '/images/energy.jpg',
+    insaat: '/images/boardroom.jpg',
+    saglik: '/images/headquarters.jpg',
+    akaryakit: '/images/energy.jpg',
+    'ofis-kirtasiye': '/images/boardroom.jpg',
+    'dis-ticaret': '/images/energy.jpg',
   };
 
   const activeSector = t.sectors.list.find((s: SectorItem) => s.id === activeSectorId) || t.sectors.list[0];
@@ -173,21 +173,41 @@ export default function SectorsSection() {
                     {t.nav.companies}:
                   </span>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '6px' }}>
-                    {activeSector.companies.map((c: string, i: number) => (
-                      <span
-                        key={i}
-                        style={{
-                          fontSize: '0.85rem',
-                          background: 'rgba(212, 175, 55, 0.1)',
-                          padding: '4px 12px',
-                          borderRadius: 'var(--radius-sm)',
-                          color: 'var(--gold-200)',
-                          border: '1px solid rgba(212, 175, 55, 0.25)',
-                        }}
-                      >
-                        {c}
-                      </span>
-                    ))}
+                    {activeSector.companies.map((c: string, i: number) => {
+                      const companySlugMap: Record<string, string> = {
+                        'Demtaş Gayrimenkul Yatırım': 'demtas-gayrimenkul',
+                        'Tekin Yapı': 'tekin-yapi',
+                        'Mimkon Mimarlık': 'mimkon',
+                        'Eston Yapı A.Ş.': 'eston-yapi',
+                        'Medistate Kavacık Hastanesi': 'medistate',
+                        'Demtaş Akaryakıt': 'demtas-akaryakit',
+                        'Demtaş Bilişim': 'demtas-bilisim',
+                        'Demtaş Evrensel': 'demtas-evrensel',
+                        'AzerGıda': 'azer-gida',
+                        'AzerTarım': 'azer-tarim',
+                      };
+                      const slug = companySlugMap[c];
+                      const href = slug ? `/subsidiaries/${slug}/` : '/subsidiaries/';
+
+                      return (
+                        <Link
+                          key={i}
+                          href={href}
+                          style={{
+                            fontSize: '0.85rem',
+                            background: 'rgba(212, 175, 55, 0.1)',
+                            padding: '4px 12px',
+                            borderRadius: 'var(--radius-sm)',
+                            color: 'var(--gold-200)',
+                            border: '1px solid rgba(212, 175, 55, 0.25)',
+                            textDecoration: 'none',
+                            transition: 'all 0.2s ease',
+                          }}
+                        >
+                          {c}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

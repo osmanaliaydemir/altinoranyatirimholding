@@ -13,21 +13,21 @@ export default function HomeCtaSection() {
       title: 'Değer Üreten Yatırımlarda Stratejik Ortaklık',
       description: 'Reel sektör gücü, finansal disiplin ve küresel vizyonla Türkiye ekonomisine ve uluslararası pazarlara değer katıyoruz.',
       contactBtn: 'Genel Merkezimizle İletişime Geçin',
-      investorBtn: 'Yatırımcı İlişkileri Portalı',
+      companiesBtn: 'Grup Şirketlerimizi İnceleyin',
     },
     en: {
       tag: 'Building The Future Together',
       title: 'Strategic Partnerships in High-Value Investments',
       description: 'Empowering Türkiye\'s industrial leap and global markets through real-sector leadership and uncompromising financial discipline.',
       contactBtn: 'Connect with Headquarters',
-      investorBtn: 'Investor Relations Portal',
+      companiesBtn: 'Explore Group Companies',
     },
     ar: {
       tag: 'نبني المستقبل معاً',
       title: 'شراكات استراتيجية في استثمارات ذات قيمة مضافة',
       description: 'نساهم في تعزيز الاقتصاد والأسواق الدولية من خلال قوة القطاع الحقيقي والانضباط المالي الصارم.',
       contactBtn: 'تواصل مع المقر الرئيسي',
-      investorBtn: 'بوابة علاقات المستثمرين',
+      companiesBtn: 'استعراض شركات المجموعة',
     },
   };
 
@@ -140,7 +140,7 @@ export default function HomeCtaSection() {
               </Link>
 
               <Link
-                href="/investor-relations/"
+                href="/subsidiaries/"
                 className="btn btn-outline"
                 style={{
                   height: '50px',
@@ -149,7 +149,7 @@ export default function HomeCtaSection() {
                   borderRadius: '10px',
                 }}
               >
-                <span>{content.investorBtn}</span>
+                <span>{content.companiesBtn}</span>
               </Link>
             </div>
           </div>

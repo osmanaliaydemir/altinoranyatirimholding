@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
-import PhilosophySection from '@/components/PhilosophySection';
 import SectorsSection from '@/components/SectorsSection';
 import NewsSection from '@/components/NewsSection';
 import HomeCtaSection from '@/components/HomeCtaSection';
@@ -13,7 +12,6 @@ export default function Home() {
       <Navbar />
       <main>
         <HeroSection />
-        <PhilosophySection />
         <SectorsSection />
         <NewsSection />
         <HomeCtaSection />

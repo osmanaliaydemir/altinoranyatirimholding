@@ -110,11 +110,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/investor-relations/" className="nav-link" style={{ padding: 0 }}>
-                  {t.nav.investor}
-                </Link>
-              </li>
-              <li>
                 <Link href="/sustainability/" className="nav-link" style={{ padding: 0 }}>
                   {t.nav.sustainability}
                 </Link>

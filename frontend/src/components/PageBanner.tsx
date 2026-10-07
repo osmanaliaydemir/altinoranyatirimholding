@@ -10,7 +10,7 @@ interface PageBannerProps {
   title: string;
   description: string;
   currentPage: string;
-  pageKey?: 'about' | 'sectors' | 'subsidiaries' | 'investor' | 'sustainability' | 'media' | 'contact';
+  pageKey?: 'about' | 'sectors' | 'subsidiaries' | 'sustainability' | 'media' | 'contact';
 }
 
 const bannerDictionary: Record<
@@ -72,29 +72,9 @@ const bannerDictionary: Record<
     },
     ar: {
       tag: 'منظومتنا الاستثمارية',
-      title: '18 شركة رائدة ومحفظة متينة من الشركات التابعة',
+      title: '10 شركات رائدة ومحفظة متينة من الشركات التابعة',
       description: 'منظومة مؤسسية قوية من الشركات التشغيلية والاستثمارية، تسعى كل منها لريادة سوقها تحت مظلة حوكمة رشيدة.',
       pageTitle: 'الشركات التابعة',
-    },
-  },
-  investor: {
-    tr: {
-      tag: 'Finansal Şeffaflık',
-      title: 'Yatırımcı İlişkileri & Kurumsal Yönetişim',
-      description: 'Uluslararası standartlarda bağımsız denetimden geçen finansal tablolarımız, faaliyet raporlarımız ve paydaş değerini artıran yönetim modelimiz.',
-      pageTitle: 'Yatırımcı İlişkileri',
-    },
-    en: {
-      tag: 'Financial Transparency',
-      title: 'Investor Relations & Corporate Governance',
-      description: 'Independently audited financial reports under international standards, annual disclosures, and a value-accretive stakeholder model.',
-      pageTitle: 'Investor Relations',
-    },
-    ar: {
-      tag: 'الشفافية المالية',
-      title: 'علاقات المستثمرين والحوكمة المؤسسية',
-      description: 'قوائم مالية مدققة دولياً، تقارير سنوية شاملة، ونموذج إداري يعزز القيمة المضافة لجميع المساهمين والشركاء.',
-      pageTitle: 'علاقات المستثمرين',
     },
   },
   sustainability: {
@@ -171,8 +151,6 @@ export default function PageBanner({ tag, title, description, currentPage, pageK
       ? 'sectors'
       : currentPage.toLowerCase().includes('iştir') || currentPage.toLowerCase().includes('istir')
       ? 'subsidiaries'
-      : currentPage.toLowerCase().includes('yatırım') || currentPage.toLowerCase().includes('yatirim')
-      ? 'investor'
       : currentPage.toLowerCase().includes('sürdür') || currentPage.toLowerCase().includes('surdur')
       ? 'sustainability'
       : currentPage.toLowerCase().includes('medya')

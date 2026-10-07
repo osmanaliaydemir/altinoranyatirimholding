@@ -560,3 +560,190 @@ html.rtl-mode .dropdown-menu {
   color: #64748B;
 }
 
+/* ==========================================================================
+   SECTOR TABS RESPONSIVE GRID (ALL 6 TABS 100% VISIBLE AT A GLANCE)
+   ========================================================================== */
+.sectors-tabs-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+@media (max-width: 1180px) {
+  .sectors-tabs-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 680px) {
+  .sectors-tabs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+.sector-tab-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 16px 16px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(15, 25, 46, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: inherit;
+  min-height: 122px;
+}
+
+.sector-tab-card:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.4);
+  color: #FFFFFF;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.sector-tab-card.active {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(15, 25, 46, 0.95) 100%);
+  border-color: var(--gold-400);
+  color: var(--gold-200);
+  box-shadow: 0 10px 28px rgba(212, 175, 55, 0.22);
+  transform: translateY(-2px);
+}
+
+.sector-tab-card.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background: var(--gradient-gold);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.9);
+}
+
+.sector-tab-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.sector-tab-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  max-width: 44px;
+  max-height: 44px;
+  flex: 0 0 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94A3B8;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+}
+
+.sector-tab-icon svg {
+  display: block;
+  margin: auto;
+  flex-shrink: 0;
+}
+
+.sector-tab-card:hover .sector-tab-icon {
+  color: var(--gold-300);
+  border-color: rgba(212, 175, 55, 0.4);
+  background: rgba(212, 175, 55, 0.12);
+  transform: scale(1.05);
+}
+
+.sector-tab-card.active .sector-tab-icon {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(10, 16, 29, 0.9) 100%);
+  border-color: var(--gold-400);
+  color: var(--gold-300);
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
+}
+
+.sector-tab-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-family: var(--font-serif);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94A3B8;
+  transition: all 0.25s ease;
+}
+
+.sector-tab-card:hover .sector-tab-num {
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold-300);
+}
+
+.sector-tab-card.active .sector-tab-num {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--gold-400);
+  color: var(--gold-200);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+}
+
+.sector-tab-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #E2E8F0;
+  margin-bottom: 6px;
+  transition: color 0.2s ease;
+}
+
+.sector-tab-card.active .sector-tab-title {
+  color: #FFFFFF;
+}
+
+.sector-tab-indicator {
+  font-size: 0.72rem;
+  color: #94A3B8;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sector-tab-card.active .sector-tab-indicator {
+  color: var(--gold-400);
+}
+
+@keyframes sectorFadeScale {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.sector-tab-panel {
+  animation: sectorFadeScale 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+

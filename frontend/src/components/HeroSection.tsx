@@ -205,7 +205,7 @@ export default function HeroSection() {
             </Link>
 
             <Link
-              href="/investor-relations/"
+              href="/subsidiaries/"
               className="btn btn-outline"
               style={{
                 height: '52px',
@@ -224,10 +224,11 @@ export default function HeroSection() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
               </svg>
-              <span>{t.hero.investorBtn}</span>
+              <span>{t.nav.companies}</span>
             </Link>
           </div>
 
@@ -265,29 +266,29 @@ export default function HeroSection() {
             <div className="hud-metric-item">
               <div className="hud-val-row">
                 <span className="hud-num text-gold-pure">
-                  18
+                  10
                 </span>
                 <span className="hud-suffix text-gold-300">
                   {lang === 'tr' ? 'Şirket' : lang === 'ar' ? 'شركة' : 'Companies'}
                 </span>
               </div>
               <div className="hud-label">
-                {lang === 'tr' ? 'Grup Şirketi & İştirak' : lang === 'ar' ? 'شركة تابعة ومجموعة' : 'Group Companies & Assets'}
+                {lang === 'tr' ? 'Grup Şirketi & Marka' : lang === 'ar' ? 'شركات تابعة وعلامات' : 'Group Companies & Brands'}
               </div>
             </div>
 
-            {/* Metric 4: Institutional Experience & Trust */}
+            {/* Metric 4: Global Trade & Logistics Network */}
             <div className="hud-metric-item" style={{ borderRight: 'none' }}>
               <div className="hud-val-row">
                 <span className="hud-num" style={{ color: '#FFFFFF' }}>
-                  40+
+                  Global
                 </span>
                 <span className="hud-suffix" style={{ color: '#CBD5E1' }}>
-                  {lang === 'tr' ? 'Yıl' : lang === 'ar' ? 'عاماً' : 'Years'}
+                  {lang === 'tr' ? 'Ağ' : lang === 'ar' ? 'شبكة' : 'Reach'}
                 </span>
               </div>
               <div className="hud-label">
-                {lang === 'tr' ? 'Köklü Tecrübe & Güven' : lang === 'ar' ? 'سنوات من الريادة والخبرة' : 'Institutional Trust & Legacy'}
+                {lang === 'tr' ? 'Dış Ticaret & Lojistik' : lang === 'ar' ? 'التجارة الدولية واللوجستيات' : 'Global Trade & Logistics'}
               </div>
             </div>
           </div>

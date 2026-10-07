@@ -2,19 +2,17 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageBanner from '@/components/PageBanner';
-import PhilosophySection from '@/components/PhilosophySection';
 import ChairmanSection from '@/components/ChairmanSection';
 import AboutContent from '@/components/AboutContent';
 
 export const metadata: Metadata = {
   title: 'Kurumsal | Altınoran Yatırım Holding',
   description:
-    'Altınoran Yatırım Holding kurumsal kimliği, yönetim kurulu, altın oran felsefesi, tarihçesi ve kurumsal yönetişim standartları.',
+    'Altınoran Yatırım Holding kurumsal kimliği, yönetim kurulu, tarihçesi ve kurumsal yönetişim standartları.',
   keywords: [
     'Altınoran Holding Kurumsal',
     'Yönetim Kurulu',
-    'Osman Aydemir',
-    'Altın Oran Felsefesi',
+    'Hanifi Tekin',
     'Holding Tarihçesi',
     'Kurumsal Yönetişim',
   ],
@@ -23,7 +21,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Kurumsal | Altınoran Yatırım Holding',
-    description: 'Yarınların değerini altın oran mükemmelliğiyle inşa ediyoruz.',
+    description: 'Yarınların değerini köklü tecrübemiz ve dinamik sektörlerimizle inşa ediyoruz.',
     url: 'https://altinoranyatirimholding.com.tr/about/',
     images: [{ url: '/images/boardroom.jpg' }],
   },
@@ -38,11 +36,10 @@ export default function AboutPage() {
           pageKey="about"
           tag="Kurumsal Kimlik & Vizyon"
           title="Geleceğe Güvenle Bakan Köklü Bir Yatırım Mirası"
-          description="Altınoran Yatırım Holding, evrenin mükemmel uyumu olan altın orandan ilham alarak kurumsal disiplin ve reel sektör gücünü bir araya getiriyor."
+          description="Altınoran Yatırım Holding, kurumsal disiplin ve reel sektör gücünü çok sektörlü operasyonel mükemmellikle bir araya getiriyor."
           currentPage="Kurumsal"
         />
         <AboutContent />
-        <PhilosophySection />
         <ChairmanSection />
       </main>
       <Footer />
