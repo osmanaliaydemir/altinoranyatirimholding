@@ -112,7 +112,7 @@ export default function ContactSection() {
                   <div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--gold-300)', fontWeight: 600 }}>{t.contact.phoneLabel}</div>
                     <a
-                      href="tel:+902123456700"
+                      href="tel:+902164551414"
                       style={{ color: '#FFFFFF', fontSize: '1.05rem', fontWeight: 600, textDecoration: 'none', display: 'inline-block', marginTop: '2px' }}
                     >
                       {t.contact.phone}
@@ -181,7 +181,7 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Maslak Istanbul Location Badge */}
+            {/* Ataşehir Istanbul Location Badge */}
             <div
               className="glass-panel"
               style={{
@@ -191,10 +191,10 @@ export default function ContactSection() {
               }}
             >
               <div style={{ fontSize: '0.85rem', color: 'var(--gold-400)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
-                Lokasyon: Maslak Finans Bölgesi
+                Lokasyon: Ataşehir Yönetim Merkezi
               </div>
               <p style={{ color: '#CBD5E1', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>
-                Metro, helipad ve çevre yollarına doğrudan entegre genel merkez kulemizde yer alan holding merkezimiz, ulusal ve uluslararası heyetleri ağırlamaktadır.
+                E-80 ve ana ulaşım koridorlarına doğrudan entegre yönetim ofisimiz, ulusal ve uluslararası heyetleri ve iş ortaklarımızı ağırlamaktadır.
               </p>
             </div>
           </div>

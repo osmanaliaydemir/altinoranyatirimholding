@@ -98,7 +98,7 @@ export default function MediaContent() {
               </div>
               <div>
                 <span style={{ color: '#94A3B8' }}>Santral: </span>
-                <span style={{ color: '#FFFFFF', fontWeight: 600 }}>+90 (212) 345 67 00</span>
+                <span style={{ color: '#FFFFFF', fontWeight: 600 }}>+90 216 455 14 14</span>
               </div>
             </div>
           </div>

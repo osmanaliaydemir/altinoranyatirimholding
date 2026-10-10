@@ -186,9 +186,9 @@ export default function Navbar() {
           ),
         },
         {
-          label: lang === 'tr' ? 'İletişim & Genel Merkez' : lang === 'ar' ? 'اتصل بنا' : 'Contact & Headquarters',
+          label: lang === 'tr' ? 'İletişim & Yönetim Ofisi' : lang === 'ar' ? 'اتصل بنا' : 'Contact & Headquarters',
           href: '/contact/',
-          desc: lang === 'tr' ? 'Maslak genel merkez ve kurumsal kanallar' : lang === 'ar' ? 'المقر الرئيسي في مسلك وقنوات التواصل' : 'Maslak headquarters & stakeholder channels',
+          desc: lang === 'tr' ? 'Ataşehir yönetim ofisi ve kurumsal kanallar' : lang === 'ar' ? 'المقر الإداري في أتاشهير وقنوات التواصل' : 'Ataşehir executive office & channels',
           icon: (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>

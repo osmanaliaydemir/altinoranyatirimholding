@@ -19,16 +19,16 @@ export default function JsonLd() {
     },
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Maslak Mah. Büyükdere Cad. No: 284 Altınoran Kuleleri',
-      addressLocality: 'Sarıyer',
+      streetAddress: 'Yenişehir Mah. E-80 Güney Yanyol, Rumi Sok. No:29',
+      addressLocality: 'Ataşehir',
       addressRegion: 'İstanbul',
-      postalCode: '34398',
+      postalCode: '34779',
       addressCountry: 'TR',
     },
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: '+90-212-345-6700',
+        telephone: '+90-216-455-1414',
         contactType: 'customer service',
         email: 'info@altinoranyatirimholding.com.tr',
         areaServed: 'TR',
@@ -36,7 +36,7 @@ export default function JsonLd() {
       },
       {
         '@type': 'ContactPoint',
-        telephone: '+90-212-345-6700',
+        telephone: '+90-216-455-1414',
         contactType: 'investor relations',
         email: 'ir@altinoranyatirimholding.com.tr',
         areaServed: 'Global',

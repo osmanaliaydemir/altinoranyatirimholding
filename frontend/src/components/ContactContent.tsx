@@ -31,13 +31,6 @@ export default function ContactContent() {
     }, 1000);
   };
 
-  const departments = [
-    { name: 'Genel Sekreterlik & Santral', email: 'info@altinoranyatirimholding.com.tr', tel: '+90 (212) 345 67 00' },
-    { name: 'Yatırımcı İlişkileri Direktörlüğü', email: 'ir@altinoranyatirimholding.com.tr', tel: '+90 (212) 345 67 10' },
-    { name: 'Kurumsal İletişim & Basın', email: 'basin@altinoranyatirimholding.com.tr', tel: '+90 (212) 345 67 20' },
-    { name: 'İnsan Kaynakları & Kariyer', email: 'ik@altinoranyatirimholding.com.tr', tel: '+90 (212) 345 67 30' },
-  ];
-
   return (
     <section style={{ padding: '80px 0', position: 'relative' }}>
       <div className="container">
@@ -191,55 +184,35 @@ export default function ContactContent() {
                 border: '1px solid rgba(212, 175, 55, 0.35)',
               }}
             >
-              <span className="badge" style={{ marginBottom: '14px' }}>Genel Merkez</span>
+              <span className="badge" style={{ marginBottom: '14px' }}>Yönetim Ofisi</span>
               <h3 style={{ fontSize: '1.4rem', color: '#FFFFFF', marginBottom: '16px' }}>
-                Altınoran Kuleleri Maslak
+                Merkez / Yönetim Ofisi
               </h3>
               <p style={{ color: '#E2E8F0', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '24px' }}>
-                Maslak Mah. Büyükdere Cad. No: 284 Altınoran Kuleleri Kat: 36-40, Sarıyer / İstanbul, Türkiye
+                Yenişehir Mahallesi, E-80 Güney Yanyol, Rumi Sokak, No:29, Ataşehir, İstanbul
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '20px' }}>
                 <div>
                   <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>Santral Telefon:</span>
-                  <div style={{ color: 'var(--gold-300)', fontWeight: 700, fontSize: '1.1rem' }}>+90 (212) 345 67 00</div>
+                  <div style={{ color: 'var(--gold-300)', fontWeight: 700, fontSize: '1.1rem' }}>+90 216 455 14 14</div>
                 </div>
                 <div>
                   <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>Faks:</span>
-                  <div style={{ color: '#FFFFFF', fontWeight: 600 }}>+90 (212) 345 67 01</div>
+                  <div style={{ color: '#FFFFFF', fontWeight: 600 }}>+90 216 455 14 15</div>
+                </div>
+                <div>
+                  <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>E-posta:</span>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 600 }}>
+                    <a href="mailto:info@altinoranyatirimholding.com.tr" style={{ color: 'var(--gold-300)', textDecoration: 'none' }}>
+                      info@altinoranyatirimholding.com.tr
+                    </a>
+                  </div>
                 </div>
                 <div>
                   <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>Çalışma Saatleri:</span>
                   <div style={{ color: '#CBD5E1', fontSize: '0.9rem' }}>Pazartesi - Cuma: 08:30 - 18:00 (GMT+3)</div>
                 </div>
-              </div>
-            </div>
-
-            {/* Departments Quick Directory */}
-            <div className="glass-panel" style={{ padding: '32px' }}>
-              <h4 style={{ fontSize: '1.15rem', color: '#FFFFFF', marginBottom: '16px' }}>
-                Departman İletişim Rehberi
-              </h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {departments.map((dept, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      padding: '12px 16px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      borderRadius: 'var(--radius-sm)',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <div>
-                      <div style={{ fontSize: '0.88rem', fontWeight: 600, color: '#FFFFFF' }}>{dept.name}</div>
-                      <div style={{ fontSize: '0.82rem', color: 'var(--gold-400)' }}>{dept.email}</div>
-                    </div>
-                    <span style={{ fontSize: '0.82rem', color: '#94A3B8' }}>{dept.tel}</span>
-                  </div>
-                ))}
               </div>
             </div>
           </div>

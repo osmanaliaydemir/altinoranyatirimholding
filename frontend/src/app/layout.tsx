@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         url: "/images/headquarters.jpg",
         width: 1200,
         height: 630,
-        alt: "Altınoran Yatırım Holding Genel Merkezi Maslak",
+        alt: "Altınoran Yatırım Holding Yönetim Ofisi Ataşehir İstanbul",
       },
     ],
     locale: "tr_TR",
@@ -52,6 +52,7 @@ export const metadata: Metadata = {
 };
 
 import PageTransitionLoader from "@/components/PageTransitionLoader";
+import FloatingActions from "@/components/FloatingActions";
 
 export default function RootLayout({
   children,
@@ -66,7 +67,10 @@ export default function RootLayout({
       <body>
         <JsonLd />
         <PageTransitionLoader />
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <FloatingActions />
+        </LanguageProvider>
       </body>
     </html>
   );

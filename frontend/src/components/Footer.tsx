@@ -178,9 +178,9 @@ export default function Footer() {
             )}
 
             <div style={{ marginTop: '24px', fontSize: '0.85rem', color: '#64748B' }}>
-              Maslak Mah. Büyükdere Cad. No: 284, Sarıyer / İstanbul
+              Yenişehir Mah. E-80 Güney Yanyol, Rumi Sok. No:29, Ataşehir / İstanbul
               <br />
-              Tel: +90 (212) 345 67 00
+              Tel: +90 216 455 14 14
             </div>
           </div>
         </div>

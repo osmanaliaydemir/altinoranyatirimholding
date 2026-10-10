@@ -92,8 +92,40 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
     explore: 'İncele',
   };
 
+  // Schema.org BreadcrumbList Rich Snippet
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: localizedLabels.home,
+        item: 'https://altinoranyatirimholding.com.tr/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: localizedLabels.subsidiaries,
+        item: 'https://altinoranyatirimholding.com.tr/subsidiaries/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: subsidiary.name,
+        item: `https://altinoranyatirimholding.com.tr/subsidiaries/${subsidiary.slug}/`,
+      },
+    ],
+  };
+
   return (
     <article style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
+      {/* Schema.org BreadcrumbList Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* ====================================================================
           HERO BANNER SECTION
           ==================================================================== */}
@@ -122,27 +154,102 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           {/* Breadcrumbs */}
-          <nav
-            aria-label="Breadcrumb"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              fontSize: '0.86rem',
-              color: '#94A3B8',
-              marginBottom: '24px',
-              flexWrap: 'wrap',
-            }}
-          >
-            <Link href="/" style={{ color: '#94A3B8', textDecoration: 'none' }}>
-              {localizedLabels.home}
-            </Link>
-            <span>/</span>
-            <Link href="/subsidiaries/" style={{ color: '#94A3B8', textDecoration: 'none' }}>
-              {localizedLabels.subsidiaries}
-            </Link>
-            <span>/</span>
-            <span style={{ color: 'var(--gold-300)', fontWeight: 600 }}>{subsidiary.name}</span>
+          <nav aria-label="Breadcrumb" style={{ marginBottom: '24px' }}>
+            <ol
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                listStyle: 'none',
+                padding: '6px 14px',
+                margin: 0,
+                background: 'rgba(15, 25, 46, 0.65)',
+                border: '1px solid rgba(212, 175, 55, 0.25)',
+                borderRadius: 'var(--radius-full)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                fontSize: '0.84rem',
+                flexWrap: 'wrap',
+              }}
+            >
+              <li>
+                <Link
+                  href="/"
+                  style={{
+                    color: '#94A3B8',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    transition: 'color 0.2s ease',
+                  }}
+                  onMouseOver={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+                  onMouseOut={(e) => (e.currentTarget.style.color = '#94A3B8')}
+                >
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                  <span>{localizedLabels.home}</span>
+                </Link>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center' }} aria-hidden="true">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(212, 175, 55, 0.6)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ transform: isRTL ? 'scaleX(-1)' : 'none' }}
+                >
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </li>
+              <li>
+                <Link
+                  href="/subsidiaries/"
+                  style={{
+                    color: '#94A3B8',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s ease',
+                  }}
+                  onMouseOver={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+                  onMouseOut={(e) => (e.currentTarget.style.color = '#94A3B8')}
+                >
+                  {localizedLabels.subsidiaries}
+                </Link>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center' }} aria-hidden="true">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(212, 175, 55, 0.6)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ transform: isRTL ? 'scaleX(-1)' : 'none' }}
+                >
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </li>
+              <li style={{ color: 'var(--gold-300)', fontWeight: 600 }} aria-current="page">
+                {subsidiary.name}
+              </li>
+            </ol>
           </nav>
 
           {/* Hero Header */}

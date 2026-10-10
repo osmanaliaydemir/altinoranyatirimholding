@@ -5,23 +5,23 @@ import PageBanner from '@/components/PageBanner';
 import ContactContent from '@/components/ContactContent';
 
 export const metadata: Metadata = {
-  title: 'İletişim & Genel Merkez | Altınoran Yatırım Holding',
+  title: 'İletişim & Yönetim Ofisi | Altınoran Yatırım Holding',
   description:
-    'Altınoran Yatırım Holding Maslak genel merkez iletişim bilgileri, telefon numaraları, departman e-postaları ve kurumsal iletişim formu.',
+    'Altınoran Yatırım Holding Ataşehir yönetim ofisi iletişim bilgileri, telefon numaraları, departman e-postaları ve kurumsal iletişim formu.',
   keywords: [
     'Altınoran İletişim',
-    'Holding Maslak Adres',
+    'Holding Ataşehir Adres',
     'Altınoran Telefon',
     'Yatırımcı İletişim',
     'Basın İletişim',
-    'Maslak Kuleleri',
+    'Ataşehir Yönetim Ofisi',
   ],
   alternates: {
     canonical: 'https://altinoranyatirimholding.com.tr/contact/',
   },
   openGraph: {
-    title: 'İletişim & Genel Merkez | Altınoran Yatırım Holding',
-    description: 'Holding genel merkezimize ve ilgili birimlerimize dilediğiniz zaman ulaşabilirsiniz.',
+    title: 'İletişim & Yönetim Ofisi | Altınoran Yatırım Holding',
+    description: 'Holding yönetim ofisimize ve ilgili birimlerimize dilediğiniz zaman ulaşabilirsiniz.',
     url: 'https://altinoranyatirimholding.com.tr/contact/',
     images: [{ url: '/images/headquarters.jpg' }],
   },
@@ -36,7 +36,7 @@ export default function ContactPage() {
           pageKey="contact"
           tag="Bize Ulaşın"
           title="Merkez Ofisimiz ve İletişim Kanalları"
-          description="Kurumsal ortaklıklar, yatırım talepleri ve sorularınız için Maslak Finans Merkezi’ndeki genel merkezimizle bağlantıya geçebilirsiniz."
+          description="Kurumsal ortaklıklar, yatırım talepleri ve sorularınız için Ataşehir yönetim ofisimizle bağlantıya geçebilirsiniz."
           currentPage="İletişim"
         />
         <ContactContent />

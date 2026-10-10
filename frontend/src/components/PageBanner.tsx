@@ -121,19 +121,19 @@ const bannerDictionary: Record<
     tr: {
       tag: 'Bize Ulaşın',
       title: 'Merkez Ofisimiz ve İletişim Kanalları',
-      description: 'Kurumsal ortaklıklar, yatırım talepleri ve sorularınız için Maslak Finans Merkezi’ndeki genel merkezimizle bağlantıya geçebilirsiniz.',
+      description: 'Kurumsal ortaklıklar, yatırım talepleri ve sorularınız için Ataşehir yönetim ofisimizle bağlantıya geçebilirsiniz.',
       pageTitle: 'İletişim',
     },
     en: {
       tag: 'Contact Us',
-      title: 'Headquarters & Global Communication Channels',
-      description: 'Connect with our executive headquarters in Maslak Financial District for corporate partnerships, investor inquiries, and stakeholder affairs.',
+      title: 'Executive Office & Communication Channels',
+      description: 'Connect with our executive management office in Ataşehir for corporate partnerships, investor inquiries, and stakeholder affairs.',
       pageTitle: 'Contact',
     },
     ar: {
       tag: 'اتصل بنا',
-      title: 'المقر الرئيسي وقنوات التواصل المؤسسي',
-      description: 'تواصل مع مقرنا الرئيسي في مركز مسلك المالي بإسطنبول للشراكات الاستراتيجية واستفسارات المستثمرين.',
+      title: 'المقر الإداري وقنوات التواصل المؤسسي',
+      description: 'تواصل مع مكتب الإدارة في أتاشهير بإسطنبول للشراكات الاستراتيجية واستفسارات المستثمرين.',
       pageTitle: 'اتصل بنا',
     },
   },
@@ -166,6 +166,26 @@ export default function PageBanner({ tag, title, description, currentPage, pageK
   const displayDesc = localizedData ? localizedData.description : description;
   const displayPage = localizedData ? localizedData.pageTitle : currentPage;
 
+  const breadcrumbPath = resolvedKey ? `/${resolvedKey}/` : '/';
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: t.nav.home,
+        item: 'https://altinoranyatirimholding.com.tr/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: displayPage,
+        item: `https://altinoranyatirimholding.com.tr${breadcrumbPath}`,
+      },
+    ],
+  };
+
   return (
     <section
       className="page-banner-section"
@@ -178,6 +198,11 @@ export default function PageBanner({ tag, title, description, currentPage, pageK
         overflow: 'hidden',
       }}
     >
+      {/* Schema.org BreadcrumbList Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* Background Subtle Radial Glow */}
       <div
         style={{

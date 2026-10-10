@@ -34,7 +34,7 @@ export default function HeroSection() {
       >
         <Image
           src="/images/headquarters.jpg"
-          alt="Altınoran Yatırım Holding Genel Merkezi Maslak İstanbul"
+          alt="Altınoran Yatırım Holding Yönetim Ofisi Ataşehir İstanbul"
           fill
           priority
           sizes="100vw"
