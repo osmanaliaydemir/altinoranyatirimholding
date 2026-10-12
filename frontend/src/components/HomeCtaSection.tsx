@@ -41,12 +41,12 @@ export default function HomeCtaSection() {
           style={{
             padding: '56px 40px',
             borderRadius: '24px',
-            border: '1px solid rgba(212, 175, 55, 0.4)',
-            background: 'linear-gradient(135deg, rgba(16, 26, 48, 0.9) 0%, rgba(8, 14, 26, 0.95) 100%)',
+            border: '1px solid var(--border-gold)',
+            background: 'var(--bg-cta, linear-gradient(135deg, rgba(16, 26, 48, 0.9) 0%, rgba(8, 14, 26, 0.95) 100%))',
             textAlign: 'center',
             position: 'relative',
             overflow: 'hidden',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
+            boxShadow: 'var(--shadow-lg)',
           }}
         >
           {/* Subtle Golden Glow Accent */}
@@ -83,7 +83,7 @@ export default function HomeCtaSection() {
                 fontSize: 'clamp(2rem, 3.8vw, 3rem)',
                 lineHeight: 1.2,
                 marginBottom: '18px',
-                color: '#FFFFFF',
+                color: 'var(--text-main)',
                 fontWeight: 800,
                 letterSpacing: '-0.02em',
               }}
@@ -93,7 +93,7 @@ export default function HomeCtaSection() {
 
             <p
               style={{
-                color: '#CBD5E1',
+                color: 'var(--text-muted)',
                 fontSize: '1.1rem',
                 lineHeight: 1.7,
                 maxWidth: '680px',

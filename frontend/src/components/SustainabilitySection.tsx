@@ -92,10 +92,10 @@ export default function SustainabilitySection() {
             >
               E
             </div>
-            <h3 style={{ fontSize: '1.3rem', color: '#FFFFFF', marginBottom: '12px' }}>
+            <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginBottom: '12px' }}>
               {t.sustainability.card1Title}
             </h3>
-            <p style={{ color: '#94A3B8', fontSize: '0.94rem', lineHeight: 1.7, margin: 0 }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.94rem', lineHeight: 1.7, margin: 0 }}>
               {t.sustainability.card1Desc}
             </p>
           </div>
@@ -109,7 +109,7 @@ export default function SustainabilitySection() {
                 borderRadius: '12px',
                 background: 'rgba(212, 175, 55, 0.15)',
                 border: '1px solid rgba(212, 175, 55, 0.4)',
-                color: 'var(--gold-300)',
+                color: 'var(--gold-400)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -121,10 +121,10 @@ export default function SustainabilitySection() {
             >
               S
             </div>
-            <h3 style={{ fontSize: '1.3rem', color: '#FFFFFF', marginBottom: '12px' }}>
+            <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginBottom: '12px' }}>
               {t.sustainability.card2Title}
             </h3>
-            <p style={{ color: '#94A3B8', fontSize: '0.94rem', lineHeight: 1.7, margin: 0 }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.94rem', lineHeight: 1.7, margin: 0 }}>
               {t.sustainability.card2Desc}
             </p>
           </div>
@@ -150,10 +150,10 @@ export default function SustainabilitySection() {
             >
               G
             </div>
-            <h3 style={{ fontSize: '1.3rem', color: '#FFFFFF', marginBottom: '12px' }}>
+            <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginBottom: '12px' }}>
               {t.sustainability.card3Title}
             </h3>
-            <p style={{ color: '#94A3B8', fontSize: '0.94rem', lineHeight: 1.7, margin: 0 }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.94rem', lineHeight: 1.7, margin: 0 }}>
               {t.sustainability.card3Desc}
             </p>
           </div>

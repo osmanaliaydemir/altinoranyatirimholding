@@ -256,8 +256,8 @@ export default function PageBanner({ tag, title, description, currentPage, pageK
                 padding: '6px 14px',
                 margin: 0,
                 fontSize: '0.84rem',
-                background: 'rgba(15, 25, 46, 0.65)',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
+                background: 'var(--bg-hud)',
+                border: '1px solid var(--border-gold)',
                 borderRadius: 'var(--radius-full)',
                 backdropFilter: 'blur(10px)',
                 WebkitBackdropFilter: 'blur(10px)',
@@ -267,15 +267,15 @@ export default function PageBanner({ tag, title, description, currentPage, pageK
                 <Link
                   href="/"
                   style={{
-                    color: '#94A3B8',
+                    color: 'var(--text-muted)',
                     textDecoration: 'none',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '5px',
                     transition: 'color 0.2s ease',
                   }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-                  onMouseOut={(e) => (e.currentTarget.style.color = '#94A3B8')}
+                  onMouseOver={(e) => (e.currentTarget.style.color = 'var(--gold-400)')}
+                  onMouseOut={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
                 >
                   <svg
                     width="13"
@@ -308,7 +308,7 @@ export default function PageBanner({ tag, title, description, currentPage, pageK
                   <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
               </li>
-              <li style={{ color: 'var(--gold-300)', fontWeight: 600 }}>{displayPage}</li>
+              <li style={{ color: 'var(--gold-400)', fontWeight: 600 }}>{displayPage}</li>
             </ol>
           </nav>
 
@@ -322,7 +322,7 @@ export default function PageBanner({ tag, title, description, currentPage, pageK
                 letterSpacing: '0.08em',
                 background: 'rgba(212, 175, 55, 0.08)',
                 border: '1px solid rgba(212, 175, 55, 0.35)',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
               }}
             >
               <span
@@ -347,10 +347,9 @@ export default function PageBanner({ tag, title, description, currentPage, pageK
               marginBottom: '18px',
               fontWeight: 800,
               letterSpacing: '-0.025em',
-              color: '#FFFFFF',
+              color: 'var(--text-main)',
               display: 'block',
               width: '100%',
-              textShadow: '0 4px 20px rgba(0,0,0,0.5)',
             }}
           >
             {displayTitle}
@@ -361,7 +360,7 @@ export default function PageBanner({ tag, title, description, currentPage, pageK
             className="lead-text"
             style={{
               maxWidth: '780px',
-              color: '#CBD5E1',
+              color: 'var(--text-muted)',
               fontSize: 'clamp(1.05rem, 1.5vw, 1.2rem)',
               lineHeight: 1.7,
               fontWeight: 350,

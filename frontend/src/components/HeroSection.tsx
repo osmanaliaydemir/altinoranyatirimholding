@@ -4,9 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function HeroSection() {
   const { t, isRTL, lang } = useLanguage();
+  const { isLight } = useTheme();
 
   return (
     <section
@@ -21,7 +23,7 @@ export default function HeroSection() {
         overflow: 'hidden',
       }}
     >
-      {/* Background Image with Cinematic Dark Gradient Overlays */}
+      {/* Background Image with Cinematic Gradient Overlays */}
       <div
         style={{
           position: 'absolute',
@@ -38,36 +40,48 @@ export default function HeroSection() {
           fill
           priority
           sizes="100vw"
+          className="hero-hq-bg-img"
           style={{
             objectFit: 'cover',
             objectPosition: 'center 35%',
-            filter: 'brightness(0.55) contrast(1.1)',
+            filter: isLight ? 'brightness(0.92) contrast(1.02)' : 'brightness(0.55) contrast(1.1)',
+            transition: 'filter 0.4s ease',
           }}
         />
-        {/* Layered dark gradients for crystal-clear readability */}
+        {/* Layered gradients for crystal-clear readability */}
+        <div
+          className="hero-overlay-horizontal"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: isLight
+              ? isRTL
+                ? 'linear-gradient(270deg, rgba(248, 250, 252, 0.96) 0%, rgba(248, 250, 252, 0.88) 55%, rgba(248, 250, 252, 0.35) 100%)'
+                : 'linear-gradient(90deg, rgba(248, 250, 252, 0.96) 0%, rgba(248, 250, 252, 0.88) 55%, rgba(248, 250, 252, 0.35) 100%)'
+              : isRTL
+                ? 'linear-gradient(270deg, rgba(6, 9, 17, 0.95) 0%, rgba(6, 9, 17, 0.85) 50%, rgba(6, 9, 17, 0.35) 100%)'
+                : 'linear-gradient(90deg, rgba(6, 9, 17, 0.95) 0%, rgba(6, 9, 17, 0.85) 50%, rgba(6, 9, 17, 0.35) 100%)',
+            transition: 'background 0.4s ease',
+          }}
+        />
+        <div
+          className="hero-overlay-vertical"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: isLight
+              ? 'linear-gradient(180deg, rgba(248, 250, 252, 0.6) 0%, transparent 40%, rgba(248, 250, 252, 0.85) 75%, #F8FAFC 100%)'
+              : 'linear-gradient(180deg, rgba(6, 9, 17, 0.4) 0%, transparent 40%, rgba(6, 9, 17, 0.8) 80%, #060911 100%)',
+            transition: 'background 0.4s ease',
+          }}
+        />
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: isRTL
-              ? 'linear-gradient(270deg, rgba(6, 9, 17, 0.95) 0%, rgba(6, 9, 17, 0.85) 50%, rgba(6, 9, 17, 0.35) 100%)'
-              : 'linear-gradient(90deg, rgba(6, 9, 17, 0.95) 0%, rgba(6, 9, 17, 0.85) 50%, rgba(6, 9, 17, 0.35) 100%)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background:
-              'linear-gradient(180deg, rgba(6, 9, 17, 0.4) 0%, transparent 40%, rgba(6, 9, 17, 0.8) 80%, #060911 100%)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background:
-              'radial-gradient(circle at 75% 45%, rgba(212, 175, 55, 0.1) 0%, transparent 60%)',
+            background: isLight
+              ? 'radial-gradient(circle at 75% 45%, rgba(184, 134, 11, 0.12) 0%, transparent 60%)'
+              : 'radial-gradient(circle at 75% 45%, rgba(212, 175, 55, 0.1) 0%, transparent 60%)',
           }}
         />
       </div>
@@ -85,7 +99,7 @@ export default function HeroSection() {
           opacity: 0.08,
           zIndex: 1,
         }}
-        className="animate-spin-slow"
+        className="hero-golden-spiral-watermark"
       >
         <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="200" cy="200" r="190" stroke="#D4AF37" strokeWidth="1" strokeDasharray="4 6" />
@@ -104,7 +118,7 @@ export default function HeroSection() {
           {/* Golden Pill Badge */}
           <div style={{ marginBottom: '22px' }}>
             <span
-              className="badge"
+              className="badge hero-live-badge"
               style={{
                 padding: '8px 18px',
                 fontSize: '0.82rem',
@@ -112,18 +126,12 @@ export default function HeroSection() {
                 background: 'rgba(212, 175, 55, 0.08)',
                 border: '1px solid rgba(212, 175, 55, 0.35)',
                 boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
               }}
             >
-              <span
-                style={{
-                  width: '7px',
-                  height: '7px',
-                  borderRadius: '50%',
-                  background: 'var(--gold-400)',
-                  boxShadow: '0 0 8px var(--gold-400)',
-                  display: 'inline-block',
-                }}
-              />
+              <span className="live-status-dot" />
               {t.hero.badge}
             </span>
           </div>
@@ -131,12 +139,14 @@ export default function HeroSection() {
           {/* Main Hero Title - Crisp, Modern & Orderly */}
           <h1
             style={{
-              fontSize: 'clamp(2.4rem, 4.8vw, 4.1rem)',
-              lineHeight: 1.15,
+              fontSize: 'clamp(1.95rem, 5.2vw, 4.1rem)',
+              lineHeight: 1.18,
               marginBottom: '22px',
               fontWeight: 800,
               letterSpacing: '-0.025em',
-              textShadow: '0 4px 24px rgba(0,0,0,0.7)',
+              color: 'var(--text-main)',
+              textShadow: isLight ? 'none' : '0 4px 24px rgba(0,0,0,0.7)',
+              wordBreak: 'break-word',
             }}
           >
             {t.hero.title1}{' '}
@@ -161,7 +171,7 @@ export default function HeroSection() {
               lineHeight: 1.7,
               marginBottom: '36px',
               maxWidth: '720px',
-              color: '#CBD5E1',
+              color: isLight ? '#334155' : '#CBD5E1',
               fontWeight: 350,
             }}
           >
@@ -212,6 +222,9 @@ export default function HeroSection() {
                 padding: '0 28px',
                 fontSize: '0.98rem',
                 borderRadius: '10px',
+                background: isLight ? '#FFFFFF' : 'transparent',
+                color: isLight ? '#0A1124' : '#FFFFFF',
+                borderColor: isLight ? 'rgba(184, 134, 11, 0.35)' : 'rgba(212, 175, 55, 0.35)',
               }}
             >
               <svg
@@ -252,10 +265,10 @@ export default function HeroSection() {
             {/* Metric 2: Strategic Sectors */}
             <div className="hud-metric-item">
               <div className="hud-val-row">
-                <span className="hud-num" style={{ color: '#FFFFFF' }}>
+                <span className="hud-num" style={{ color: isLight ? '#0A1124' : '#FFFFFF' }}>
                   {t.metrics.items[1].value}
                 </span>
-                <span className="hud-suffix" style={{ color: '#CBD5E1' }}>
+                <span className="hud-suffix" style={{ color: isLight ? '#475569' : '#CBD5E1' }}>
                   {lang === 'tr' ? 'Sektör' : lang === 'ar' ? 'قطاعات' : 'Sectors'}
                 </span>
               </div>
@@ -278,12 +291,12 @@ export default function HeroSection() {
             </div>
 
             {/* Metric 4: Global Trade & Logistics Network */}
-            <div className="hud-metric-item" style={{ borderRight: 'none' }}>
+            <div className="hud-metric-item">
               <div className="hud-val-row">
-                <span className="hud-num" style={{ color: '#FFFFFF' }}>
+                <span className="hud-num" style={{ color: isLight ? '#0A1124' : '#FFFFFF' }}>
                   Global
                 </span>
-                <span className="hud-suffix" style={{ color: '#CBD5E1' }}>
+                <span className="hud-suffix" style={{ color: isLight ? '#475569' : '#CBD5E1' }}>
                   {lang === 'tr' ? 'Ağ' : lang === 'ar' ? 'شبكة' : 'Reach'}
                 </span>
               </div>
@@ -294,97 +307,7 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .hero-metrics-hud {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 0;
-          padding: 20px 24px;
-          background: rgba(10, 16, 29, 0.78);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          border: 1px solid rgba(212, 175, 55, 0.28);
-          border-radius: var(--radius-lg);
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
-          width: 100%;
-          max-width: 860px;
-        }
-
-        .hud-metric-item {
-          padding: 0 18px;
-          border-right: 1px solid rgba(255, 255, 255, 0.08);
-          display: flex;
-          flex-direction: column;
-          justifyContent: center;
-        }
-
-        :global(html.rtl-mode) .hud-metric-item {
-          border-right: none;
-          border-left: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        :global(html.rtl-mode) .hud-metric-item:last-child {
-          border-left: none;
-        }
-
-        .hud-val-row {
-          display: flex;
-          align-items: baseline;
-          gap: 6px;
-          margin-bottom: 4px;
-        }
-
-        .hud-num {
-          font-size: 1.85rem;
-          font-weight: 800;
-          font-family: var(--font-display);
-          line-height: 1;
-          letter-spacing: -0.02em;
-        }
-
-        .hud-suffix {
-          font-size: 0.95rem;
-          font-weight: 600;
-        }
-
-        .hud-label {
-          font-size: 0.8rem;
-          color: #94A3B8;
-          font-weight: 500;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        @media (max-width: 900px) {
-          .hero-metrics-hud {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px 0;
-            padding: 20px 16px;
-          }
-          .hud-metric-item:nth-child(2) {
-            border-right: none;
-          }
-          :global(html.rtl-mode) .hud-metric-item:nth-child(2) {
-            border-left: none;
-          }
-          .hud-metric-item:nth-child(3),
-          .hud-metric-item:nth-child(4) {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 16px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .hud-num {
-            font-size: 1.55rem;
-          }
-          .hud-label {
-            font-size: 0.74rem;
-          }
-        }
-      `}</style>
     </section>
   );
 }
+

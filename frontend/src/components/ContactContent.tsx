@@ -41,14 +41,14 @@ export default function ContactContent() {
             className="glass-panel"
             style={{
               padding: '40px',
-              border: '1px solid rgba(212, 175, 55, 0.4)',
-              background: 'linear-gradient(135deg, rgba(16, 26, 48, 0.9) 0%, rgba(8, 14, 26, 0.95) 100%)',
+              border: '1px solid var(--border-gold)',
+              background: 'var(--bg-cta, linear-gradient(135deg, rgba(16, 26, 48, 0.9) 0%, rgba(8, 14, 26, 0.95) 100%))',
             }}
           >
-            <h2 style={{ fontSize: '1.8rem', color: '#FFFFFF', marginBottom: '8px' }}>
+            <h2 style={{ fontSize: '1.8rem', color: 'var(--text-main)', marginBottom: '8px' }}>
               {t.contact.formTitle}
             </h2>
-            <p style={{ color: '#94A3B8', fontSize: '0.95rem', marginBottom: '28px' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '28px' }}>
               {t.contact.formSubtitle}
             </p>
 
@@ -67,8 +67,8 @@ export default function ContactContent() {
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </div>
-                <h3 style={{ fontSize: '1.3rem', color: '#FFFFFF', marginBottom: '8px' }}>Mesajınız İletildi!</h3>
-                <p style={{ color: '#CBD5E1', fontSize: '0.95rem', margin: 0 }}>
+                <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginBottom: '8px' }}>Mesajınız İletildi!</h3>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0 }}>
                   {t.contact.successMessage}
                 </p>
                 <button
@@ -185,33 +185,33 @@ export default function ContactContent() {
               }}
             >
               <span className="badge" style={{ marginBottom: '14px' }}>Yönetim Ofisi</span>
-              <h3 style={{ fontSize: '1.4rem', color: '#FFFFFF', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '1.4rem', color: 'var(--text-main)', marginBottom: '16px' }}>
                 Merkez / Yönetim Ofisi
               </h3>
-              <p style={{ color: '#E2E8F0', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '24px' }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '24px' }}>
                 Yenişehir Mahallesi, E-80 Güney Yanyol, Rumi Sokak, No:29, Ataşehir, İstanbul
               </p>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '20px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', borderTop: '1px solid var(--border-subtle)', paddingTop: '20px' }}>
                 <div>
-                  <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>Santral Telefon:</span>
-                  <div style={{ color: 'var(--gold-300)', fontWeight: 700, fontSize: '1.1rem' }}>+90 216 455 14 14</div>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Santral Telefon:</span>
+                  <div style={{ color: 'var(--gold-400)', fontWeight: 700, fontSize: '1.1rem' }}>+90 216 455 14 14</div>
                 </div>
                 <div>
-                  <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>Faks:</span>
-                  <div style={{ color: '#FFFFFF', fontWeight: 600 }}>+90 216 455 14 15</div>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Faks:</span>
+                  <div style={{ color: 'var(--text-main)', fontWeight: 600 }}>+90 216 455 14 15</div>
                 </div>
                 <div>
-                  <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>E-posta:</span>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>E-posta:</span>
                   <div style={{ fontSize: '0.95rem', fontWeight: 600 }}>
-                    <a href="mailto:info@altinoranyatirimholding.com.tr" style={{ color: 'var(--gold-300)', textDecoration: 'none' }}>
+                    <a href="mailto:info@altinoranyatirimholding.com.tr" style={{ color: 'var(--gold-400)', textDecoration: 'none' }}>
                       info@altinoranyatirimholding.com.tr
                     </a>
                   </div>
                 </div>
                 <div>
-                  <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>Çalışma Saatleri:</span>
-                  <div style={{ color: '#CBD5E1', fontSize: '0.9rem' }}>Pazartesi - Cuma: 08:30 - 18:00 (GMT+3)</div>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Çalışma Saatleri:</span>
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Pazartesi - Cuma: 08:30 - 18:00 (GMT+3)</div>
                 </div>
               </div>
             </div>

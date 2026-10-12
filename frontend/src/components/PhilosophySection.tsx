@@ -83,11 +83,11 @@ export default function PhilosophySection() {
               </span>
             </div>
 
-            <h3 style={{ fontSize: '1.6rem', marginBottom: '12px', color: '#FFFFFF' }}>
+            <h3 style={{ fontSize: '1.6rem', marginBottom: '12px', color: 'var(--text-main)' }}>
               {t.philosophy.phiTitle}
             </h3>
 
-            <p style={{ color: '#94A3B8', fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
               {t.philosophy.phiDesc}
             </p>
           </div>
@@ -112,7 +112,7 @@ export default function PhilosophySection() {
                     borderRadius: '10px',
                     background: 'rgba(212, 175, 55, 0.15)',
                     border: '1px solid rgba(212, 175, 55, 0.4)',
-                    color: 'var(--gold-300)',
+                    color: 'var(--gold-400)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -124,10 +124,10 @@ export default function PhilosophySection() {
                   0{idx + 1}
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '1.15rem', color: '#FFFFFF', marginBottom: '6px' }}>
+                  <h4 style={{ fontSize: '1.15rem', color: 'var(--text-main)', marginBottom: '6px' }}>
                     {pillar.title}
                   </h4>
-                  <p style={{ color: '#94A3B8', fontSize: '0.92rem', lineHeight: 1.65, margin: 0 }}>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: 1.65, margin: 0 }}>
                     {pillar.desc}
                   </p>
                 </div>

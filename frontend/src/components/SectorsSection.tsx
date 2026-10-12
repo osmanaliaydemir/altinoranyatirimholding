@@ -1,14 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { SectorItem } from '@/data/translations';
 
 export default function SectorsSection() {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, lang } = useLanguage();
   const [activeSectorId, setActiveSectorId] = useState('gayrimenkul');
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [progressKey, setProgressKey] = useState(0);
 
   const sectorImages: Record<string, string> = {
     gayrimenkul: '/images/headquarters.jpg',
@@ -21,43 +23,92 @@ export default function SectorsSection() {
 
   const activeSector = t.sectors.list.find((s: SectorItem) => s.id === activeSectorId) || t.sectors.list[0];
 
+  // Auto-tour rotation every 6 seconds
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const timer = setInterval(() => {
+      setActiveSectorId((currentId) => {
+        const list = t.sectors.list;
+        const currentIndex = list.findIndex((s: SectorItem) => s.id === currentId);
+        const nextIndex = (currentIndex + 1) % list.length;
+        return list[nextIndex].id;
+      });
+      setProgressKey((prev) => prev + 1);
+    }, 6000);
+
+    return () => clearInterval(timer);
+  }, [isAutoPlaying, t.sectors.list]);
+
+  const handleTabClick = (id: string) => {
+    setActiveSectorId(id);
+    setProgressKey((prev) => prev + 1);
+    // Pause auto-rotation when user clicks a specific tab so they can read comfortably
+    setIsAutoPlaying(false);
+  };
+
   return (
-    <section id="sektorler" style={{ padding: '110px 0', position: 'relative' }}>
+    <section id="sektorler" className="sectors-section-wrapper" style={{ position: 'relative' }}>
       <div className="container">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <span className="section-tag">{t.sectors.tag}</span>
           <h2 className="section-title text-gold-gradient" style={{ margin: '0 auto 16px', maxWidth: '780px' }}>
             {t.sectors.title}
           </h2>
-          <p className="section-desc" style={{ margin: '0 auto' }}>
+          <p className="section-desc" style={{ margin: '0 auto 16px' }}>
             {t.sectors.subtitle}
           </p>
+
+          {/* Auto-Showcase Status Pill */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <button
+              type="button"
+              onClick={() => {
+                setIsAutoPlaying(!isAutoPlaying);
+                setProgressKey((prev) => prev + 1);
+              }}
+              className="sectors-tour-toggle"
+              aria-label="Toggle Auto Tour"
+            >
+              <span className={`tour-dot ${isAutoPlaying ? 'active' : ''}`} />
+              <span>
+                {isAutoPlaying
+                  ? lang === 'tr'
+                    ? 'Canlı Portföy Akışı: Aktif'
+                    : lang === 'ar'
+                    ? 'الجولة التلقائية: نشطة'
+                    : 'Live Showcase: Active'
+                  : lang === 'tr'
+                  ? 'Canlı Akış: Duraklatıldı (Oynat)'
+                  : lang === 'ar'
+                  ? 'الجولة التلقائية: متوقفة'
+                  : 'Live Showcase: Paused (Play)'}
+              </span>
+            </button>
+          </div>
         </div>
 
         {/* Sector Navigation Tabs */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '12px',
-            justifyContent: 'center',
-            marginBottom: '48px',
-          }}
-        >
+        <div className="sectors-tabs-nav">
           {t.sectors.list.map((sector: SectorItem) => {
             const isActive = sector.id === activeSector.id;
             return (
               <button
                 key={sector.id}
-                onClick={() => setActiveSectorId(sector.id)}
+                onClick={() => handleTabClick(sector.id)}
                 className={`tab-button ${isActive ? 'active' : ''}`}
                 style={{
                   fontSize: '0.92rem',
                   padding: '12px 20px',
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}
               >
                 <span>{sector.name}</span>
+                {isActive && isAutoPlaying && (
+                  <span key={progressKey} className="tab-progress-line" />
+                )}
               </button>
             );
           })}
@@ -65,26 +116,15 @@ export default function SectorsSection() {
 
         {/* Active Sector Showcase Card */}
         <div
-          className="glass-panel"
+          className="glass-panel sector-showcase-panel"
           style={{
-            padding: '40px',
-            border: '1px solid rgba(212, 175, 55, 0.4)',
-            background: 'linear-gradient(135deg, rgba(16, 26, 48, 0.9) 0%, rgba(8, 14, 26, 0.95) 100%)',
+            border: '1px solid var(--border-gold)',
+            background: 'var(--bg-cta, linear-gradient(135deg, rgba(16, 26, 48, 0.9) 0%, rgba(8, 14, 26, 0.95) 100%))',
           }}
         >
           <div className="grid-2" style={{ alignItems: 'center', gap: '48px' }}>
             {/* Visual Column */}
-            <div
-              style={{
-                position: 'relative',
-                borderRadius: 'var(--radius-lg)',
-                overflow: 'hidden',
-                minHeight: '380px',
-                height: '100%',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
-                boxShadow: 'var(--shadow-md)',
-              }}
-            >
+            <div className="sector-showcase-visual">
               <Image
                 src={sectorImages[activeSector.id] || '/images/headquarters.jpg'}
                 alt={activeSector.name}
@@ -112,33 +152,22 @@ export default function SectorsSection() {
                 <span className="badge">{activeSector.badge}</span>
               </div>
 
-              <h3 style={{ fontSize: '2rem', color: '#FFFFFF', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '2rem', color: 'var(--text-main)', marginBottom: '16px' }}>
                 {activeSector.name}
               </h3>
 
-              <p style={{ color: '#E2E8F0', fontSize: '1.05rem', lineHeight: 1.7, marginBottom: '24px' }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: 1.7, marginBottom: '24px' }}>
                 {activeSector.fullDesc}
               </p>
 
               {/* Stats Highlights */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(2, 1fr)',
-                  gap: '16px',
-                  marginBottom: '28px',
-                  padding: '20px',
-                  background: 'rgba(10, 16, 29, 0.6)',
-                  borderRadius: 'var(--radius-md)',
-                  border: '1px solid rgba(212, 175, 55, 0.2)',
-                }}
-              >
+              <div className="sector-stats-grid">
                 {activeSector.stats.map((st: { label: string; value: string }, i: number) => (
                   <div key={i}>
-                    <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--gold-300)', fontFamily: 'var(--font-serif)' }}>
+                    <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--gold-400)', fontFamily: 'var(--font-serif)' }}>
                       {st.value}
                     </div>
-                    <div style={{ fontSize: '0.85rem', color: '#94A3B8' }}>{st.label}</div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{st.label}</div>
                   </div>
                 ))}
               </div>
@@ -155,11 +184,11 @@ export default function SectorsSection() {
                         key={i}
                         style={{
                           fontSize: '0.85rem',
-                          background: 'rgba(255, 255, 255, 0.05)',
+                          background: 'var(--bg-hud)',
                           padding: '4px 12px',
                           borderRadius: 'var(--radius-sm)',
-                          color: '#CBD5E1',
-                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                          color: 'var(--text-muted)',
+                          border: '1px solid var(--border-subtle)',
                         }}
                       >
                         {h}
@@ -227,3 +256,4 @@ export default function SectorsSection() {
     </section>
   );
 }
+

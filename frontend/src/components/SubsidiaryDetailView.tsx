@@ -130,6 +130,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
           HERO BANNER SECTION
           ==================================================================== */}
       <section
+        className="subsidiary-hero-banner"
         style={{
           position: 'relative',
           padding: '120px 0 70px 0',
@@ -156,6 +157,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
           {/* Breadcrumbs */}
           <nav aria-label="Breadcrumb" style={{ marginBottom: '24px' }}>
             <ol
+              className="breadcrumb-nav-list"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -175,16 +177,14 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
               <li>
                 <Link
                   href="/"
+                  className="breadcrumb-nav-link"
                   style={{
-                    color: '#94A3B8',
                     textDecoration: 'none',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '5px',
                     transition: 'color 0.2s ease',
                   }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-                  onMouseOut={(e) => (e.currentTarget.style.color = '#94A3B8')}
                 >
                   <svg
                     width="13"
@@ -220,13 +220,11 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
               <li>
                 <Link
                   href="/subsidiaries/"
+                  className="breadcrumb-nav-link"
                   style={{
-                    color: '#94A3B8',
                     textDecoration: 'none',
                     transition: 'color 0.2s ease',
                   }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-                  onMouseOut={(e) => (e.currentTarget.style.color = '#94A3B8')}
                 >
                   {localizedLabels.subsidiaries}
                 </Link>
@@ -246,7 +244,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                   <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
               </li>
-              <li style={{ color: 'var(--gold-300)', fontWeight: 600 }} aria-current="page">
+              <li className="breadcrumb-current-page" style={{ color: 'var(--gold-300)', fontWeight: 600 }} aria-current="page">
                 {subsidiary.name}
               </li>
             </ol>
@@ -259,6 +257,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                 {content.tag}
               </span>
               <span
+                className="subsidiary-hero-pill"
                 style={{
                   fontSize: '0.82rem',
                   padding: '5px 12px',
@@ -294,6 +293,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
             </h1>
 
             <p
+              className="subsidiary-hero-subtitle"
               style={{
                 fontSize: 'clamp(1.1rem, 2vw, 1.35rem)',
                 color: '#E2E8F0',
@@ -376,27 +376,27 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                   >
                     {subsidiary.location}
                   </span>
-                  <span style={{ fontSize: '0.82rem', color: '#CBD5E1' }}>
+                  <span style={{ fontSize: '0.86rem', color: '#FFFFFF', fontWeight: 600, textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
                     {subsidiary.name}
                   </span>
                 </div>
               </div>
 
               {/* Corporate Story */}
-              <div className="glass-panel" style={{ padding: '40px 36px', marginBottom: '40px' }}>
+              <div className="glass-panel subsidiary-story-card" style={{ padding: '40px 36px', marginBottom: '40px' }}>
                 <span className="section-tag" style={{ marginBottom: '10px' }}>
                   {localizedLabels.aboutCompany}
                 </span>
-                <h2 style={{ fontSize: '1.8rem', color: '#FFFFFF', marginBottom: '20px', fontWeight: 700 }}>
+                <h2 style={{ fontSize: '1.8rem', color: 'var(--text-main)', marginBottom: '20px', fontWeight: 700 }}>
                   {content.title}
                 </h2>
-                <p style={{ color: '#E2E8F0', fontSize: '1.08rem', lineHeight: 1.8, marginBottom: '24px', fontWeight: 500 }}>
+                <p className="subsidiary-lead-text" style={{ color: 'var(--text-main)', fontSize: '1.08rem', lineHeight: 1.8, marginBottom: '24px', fontWeight: 500 }}>
                   {content.description}
                 </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   {content.fullStory.map((paragraph, idx) => (
-                    <p key={idx} style={{ color: '#94A3B8', fontSize: '1rem', lineHeight: 1.85, margin: 0 }}>
+                    <p key={idx} className="subsidiary-story-paragraph" style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: 1.85, margin: 0 }}>
                       {paragraph}
                     </p>
                   ))}
@@ -424,7 +424,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                   {content.services.map((srv, idx) => (
                     <div
                       key={idx}
-                      className="glass-panel"
+                      className="glass-panel subsidiary-service-card"
                       style={{
                         padding: '28px 24px',
                         border: '1px solid rgba(212, 175, 55, 0.25)',
@@ -432,6 +432,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                       }}
                     >
                       <div
+                        className="subsidiary-service-idx"
                         style={{
                           width: '36px',
                           height: '36px',
@@ -441,7 +442,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          color: 'var(--gold-300)',
+                          color: 'var(--gold-400)',
                           fontSize: '0.85rem',
                           fontWeight: 700,
                           marginBottom: '16px',
@@ -449,10 +450,10 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                       >
                         0{idx + 1}
                       </div>
-                      <h4 style={{ fontSize: '1.15rem', color: '#FFFFFF', marginBottom: '10px', fontWeight: 700 }}>
+                      <h4 style={{ fontSize: '1.15rem', color: 'var(--text-main)', marginBottom: '10px', fontWeight: 700 }}>
                         {srv.title}
                       </h4>
-                      <p style={{ color: '#94A3B8', fontSize: '0.94rem', lineHeight: 1.7, margin: 0 }}>
+                      <p className="subsidiary-service-desc" style={{ color: 'var(--text-muted)', fontSize: '0.94rem', lineHeight: 1.7, margin: 0 }}>
                         {srv.desc}
                       </p>
                     </div>
@@ -461,17 +462,18 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
               </div>
 
               {/* Highlights & Assets */}
-              <div className="glass-panel" style={{ padding: '36px 32px' }}>
+              <div className="glass-panel subsidiary-highlights-card" style={{ padding: '36px 32px' }}>
                 <span className="section-tag" style={{ marginBottom: '10px' }}>
                   {localizedLabels.highlightsTitle}
                 </span>
-                <h3 style={{ fontSize: '1.35rem', color: '#FFFFFF', marginBottom: '16px', fontWeight: 700 }}>
+                <h3 style={{ fontSize: '1.35rem', color: 'var(--text-main)', marginBottom: '16px', fontWeight: 700 }}>
                   {subsidiary.name} Varlıkları
                 </h3>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                   {content.highlights.map((item, idx) => (
                     <span
                       key={idx}
+                      className="subsidiary-highlight-badge"
                       style={{
                         padding: '8px 18px',
                         borderRadius: 'var(--radius-sm)',
@@ -495,7 +497,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
             <aside style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
               {/* Factsheet Card */}
               <div
-                className="glass-panel"
+                className="glass-panel subsidiary-factsheet-card"
                 style={{
                   padding: '32px 28px',
                   border: '1px solid rgba(212, 175, 55, 0.35)',
@@ -504,7 +506,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                 <h3
                   style={{
                     fontSize: '1.25rem',
-                    color: '#FFFFFF',
+                    color: 'var(--text-main)',
                     marginBottom: '20px',
                     fontWeight: 700,
                     borderBottom: '1px solid rgba(212, 175, 55, 0.2)',
@@ -516,46 +518,46 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   <div>
-                    <div style={{ fontSize: '0.78rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    <div className="subsidiary-fact-label" style={{ fontSize: '0.78rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       {localizedLabels.sectorLabel}
                     </div>
-                    <div style={{ fontSize: '0.98rem', color: 'var(--gold-300)', fontWeight: 600, marginTop: '2px' }}>
+                    <div className="subsidiary-fact-value-gold" style={{ fontSize: '0.98rem', color: 'var(--gold-400)', fontWeight: 600, marginTop: '2px' }}>
                       {content.keyFacts.sector}
                     </div>
                   </div>
 
                   <div>
-                    <div style={{ fontSize: '0.78rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    <div className="subsidiary-fact-label" style={{ fontSize: '0.78rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       {localizedLabels.foundedLabel}
                     </div>
-                    <div style={{ fontSize: '0.98rem', color: '#FFFFFF', fontWeight: 600, marginTop: '2px' }}>
+                    <div className="subsidiary-fact-value" style={{ fontSize: '0.98rem', color: 'var(--text-main)', fontWeight: 600, marginTop: '2px' }}>
                       {content.keyFacts.foundedLabel}
                     </div>
                   </div>
 
                   <div>
-                    <div style={{ fontSize: '0.78rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    <div className="subsidiary-fact-label" style={{ fontSize: '0.78rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       {localizedLabels.locationLabel}
                     </div>
-                    <div style={{ fontSize: '0.98rem', color: '#FFFFFF', fontWeight: 600, marginTop: '2px' }}>
+                    <div className="subsidiary-fact-value" style={{ fontSize: '0.98rem', color: 'var(--text-main)', fontWeight: 600, marginTop: '2px' }}>
                       {content.keyFacts.locationLabel}
                     </div>
                   </div>
 
                   <div>
-                    <div style={{ fontSize: '0.78rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    <div className="subsidiary-fact-label" style={{ fontSize: '0.78rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       {localizedLabels.capitalLabel}
                     </div>
-                    <div style={{ fontSize: '0.98rem', color: 'var(--gold-200)', fontWeight: 600, marginTop: '2px' }}>
+                    <div className="subsidiary-fact-value-gold" style={{ fontSize: '0.98rem', color: 'var(--gold-400)', fontWeight: 600, marginTop: '2px' }}>
                       {content.keyFacts.capitalStructure}
                     </div>
                   </div>
 
                   <div>
-                    <div style={{ fontSize: '0.78rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    <div className="subsidiary-fact-label" style={{ fontSize: '0.78rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       {localizedLabels.scopeLabel}
                     </div>
-                    <div style={{ fontSize: '0.98rem', color: '#FFFFFF', fontWeight: 600, marginTop: '2px' }}>
+                    <div className="subsidiary-fact-value" style={{ fontSize: '0.98rem', color: 'var(--text-main)', fontWeight: 600, marginTop: '2px' }}>
                       {content.keyFacts.scope}
                     </div>
                   </div>
@@ -564,7 +566,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
 
               {/* Performance Stats */}
               <div
-                className="glass-panel"
+                className="glass-panel subsidiary-stats-card"
                 style={{
                   padding: '28px 24px',
                   border: '1px solid rgba(212, 175, 55, 0.25)',
@@ -578,12 +580,13 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                   }}
                 >
                   {subsidiary.stats.map((st, idx) => (
-                    <div key={idx} style={{ padding: '12px 10px', background: 'rgba(10, 16, 29, 0.6)', borderRadius: 'var(--radius-sm)' }}>
+                    <div key={idx} className="subsidiary-stat-box" style={{ padding: '12px 10px', background: 'var(--bg-hud)', borderRadius: 'var(--radius-sm)' }}>
                       <div
+                        className="subsidiary-stat-val"
                         style={{
                           fontSize: '1.45rem',
                           fontWeight: 800,
-                          color: 'var(--gold-300)',
+                          color: 'var(--gold-400)',
                           fontFamily: 'var(--font-serif)',
                           lineHeight: 1.2,
                           marginBottom: '4px',
@@ -591,7 +594,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                       >
                         {st.value}
                       </div>
-                      <div style={{ fontSize: '0.8rem', color: '#94A3B8' }}>{st.label}</div>
+                      <div className="subsidiary-stat-lbl" style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{st.label}</div>
                     </div>
                   ))}
                 </div>
@@ -599,24 +602,24 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
 
               {/* Contact Card */}
               <div
-                className="glass-panel"
+                className="glass-panel subsidiary-contact-card"
                 style={{
                   padding: '28px 24px',
                   border: '1px solid rgba(212, 175, 55, 0.25)',
                 }}
               >
-                <h4 style={{ fontSize: '1.1rem', color: '#FFFFFF', marginBottom: '14px', fontWeight: 700 }}>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '14px', fontWeight: 700 }}>
                   {localizedLabels.contactTitle}
                 </h4>
-                <p style={{ color: '#94A3B8', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '16px' }}>
+                <p className="subsidiary-contact-address" style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '16px' }}>
                   {subsidiary.contact.address}
                 </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '20px', fontSize: '0.88rem' }}>
-                  <div style={{ color: 'var(--gold-300)' }}>
+                  <div style={{ color: 'var(--gold-400)' }}>
                     <strong>Tel:</strong> {subsidiary.contact.phone}
                   </div>
-                  <div style={{ color: '#CBD5E1' }}>
+                  <div className="subsidiary-contact-email" style={{ color: 'var(--text-muted)' }}>
                     <strong>E-Posta:</strong> {subsidiary.contact.email}
                   </div>
                 </div>
@@ -632,13 +635,13 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
 
               {/* Quick Jump: Other Subsidiaries */}
               <div
-                className="glass-panel"
+                className="glass-panel subsidiary-other-panel"
                 style={{
                   padding: '24px 20px',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                 }}
               >
-                <div style={{ fontSize: '0.92rem', color: 'var(--gold-300)', fontWeight: 700, marginBottom: '14px' }}>
+                <div className="subsidiary-other-title" style={{ fontSize: '0.92rem', color: 'var(--gold-300)', fontWeight: 700, marginBottom: '14px' }}>
                   {localizedLabels.allSubsidiaries}
                 </div>
 
@@ -647,6 +650,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                     <Link
                       key={other.slug}
                       href={`/subsidiaries/${other.slug}/`}
+                      className="subsidiary-other-link"
                       style={{
                         padding: '10px 14px',
                         borderRadius: 'var(--radius-sm)',
@@ -662,7 +666,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
                       }}
                     >
                       <span>{other.name}</span>
-                      <span style={{ color: 'var(--gold-400)', fontSize: '0.78rem' }}>&rarr;</span>
+                      <span className="subsidiary-other-arrow" style={{ color: 'var(--gold-400)', fontSize: '0.78rem' }}>&rarr;</span>
                     </Link>
                   ))}
                 </div>
@@ -671,15 +675,7 @@ export default function SubsidiaryDetailView({ subsidiary }: Props) {
           </div>
         </div>
       </section>
-
-      {/* Responsive Style helper */}
-      <style jsx>{`
-        @media (max-width: 992px) {
-          .subsidiary-grid-layout {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </article>
   );
 }
+

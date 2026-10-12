@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 import { Language } from '@/data/translations';
 
 interface NavSubItem {
@@ -24,6 +25,7 @@ interface NavGroup {
 export default function Navbar() {
   const pathname = usePathname();
   const { lang, setLang, t, isRTL } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
@@ -211,6 +213,16 @@ export default function Navbar() {
             width={240}
             height={50}
             priority
+            className="logo-img-dark"
+            style={{ width: 'auto', height: '48px', objectFit: 'contain' }}
+          />
+          <Image
+            src="/images/logo-light.webp"
+            alt="Altınoran Yatırım Holding"
+            width={240}
+            height={50}
+            priority
+            className="logo-img-light"
             style={{ width: 'auto', height: '48px', objectFit: 'contain' }}
           />
         </Link>
@@ -344,6 +356,7 @@ export default function Navbar() {
                             }}
                           >
                             <div
+                              className="dropdown-sub-icon"
                               style={{
                                 width: '34px',
                                 height: '34px',
@@ -362,6 +375,7 @@ export default function Navbar() {
                             </div>
                             <div style={{ flex: 1, minWidth: 0, textAlign: isRTL ? 'right' : 'left' }}>
                               <div
+                                className="dropdown-sub-title"
                                 style={{
                                   fontSize: '0.88rem',
                                   fontWeight: subActive ? 700 : 600,
@@ -373,6 +387,7 @@ export default function Navbar() {
                                 {sub.label}
                               </div>
                               <div
+                                className="dropdown-sub-desc"
                                 style={{
                                   fontSize: '0.76rem',
                                   color: '#94A3B8',
@@ -483,7 +498,7 @@ export default function Navbar() {
                         setLang(item.code);
                         setLangDropdownOpen(false);
                       }}
-                      className="lang-dropdown-item"
+                      className={`lang-dropdown-item ${isActive ? 'active' : ''}`}
                       style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -517,6 +532,48 @@ export default function Navbar() {
               </div>
             )}
           </div>
+
+          {/* Theme Switcher Toggle (Dark / Light) */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label="Tema Değiştir"
+            className="theme-toggle-btn"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '38px',
+              height: '38px',
+              background: 'rgba(15, 25, 46, 0.75)',
+              border: '1px solid rgba(212, 175, 55, 0.35)',
+              borderRadius: '8px',
+              color: 'var(--gold-300)',
+              cursor: 'pointer',
+              transition: 'all var(--transition-fast)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+            }}
+          >
+            <span className="theme-toggle-icon-dark">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </span>
+            <span className="theme-toggle-icon-light">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </span>
+          </button>
 
           {/* CTA Button */}
           <Link
@@ -571,6 +628,7 @@ export default function Navbar() {
       {/* Mobile Drawer Menu (Hierarchical Groups) */}
       {mobileMenuOpen && (
         <div
+          className="mobile-menu-drawer"
           style={{
             position: 'absolute',
             top: '100%',
@@ -618,17 +676,21 @@ export default function Navbar() {
             return (
               <div
                 key={group.id}
+                className={`mobile-accordion-wrapper ${groupActive ? 'active' : ''}`}
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
                   background: 'rgba(255, 255, 255, 0.02)',
                   borderRadius: '8px',
                   overflow: 'hidden',
-                  border: groupActive ? '1px solid rgba(212, 175, 55, 0.3)' : '1px solid rgba(255, 255, 255, 0.05)',
+                  border: groupActive
+                    ? '1px solid rgba(212, 175, 55, 0.3)'
+                    : '1px solid rgba(255, 255, 255, 0.05)',
                 }}
               >
                 <button
                   type="button"
+                  className={`mobile-accordion-btn ${groupActive ? 'active' : ''}`}
                   onClick={() =>
                     setMobileExpanded((prev) => ({ ...prev, [group.id]: !prev[group.id] }))
                   }
@@ -668,6 +730,7 @@ export default function Navbar() {
 
                 {isExpanded && (
                   <div
+                    className="mobile-subitems-container"
                     style={{
                       display: 'flex',
                       flexDirection: 'column',
@@ -683,6 +746,7 @@ export default function Navbar() {
                           key={sub.href}
                           href={sub.href}
                           onClick={() => setMobileMenuOpen(false)}
+                          className={`mobile-sub-link ${subActive ? 'active' : ''}`}
                           style={{
                             display: 'flex',
                             alignItems: 'center',
@@ -696,7 +760,7 @@ export default function Navbar() {
                             fontWeight: subActive ? 700 : 500,
                           }}
                         >
-                          <div style={{ color: subActive ? 'var(--gold-300)' : '#94A3B8' }}>{sub.icon}</div>
+                          <div style={{ color: subActive ? 'var(--gold-400)' : '#94A3B8' }}>{sub.icon}</div>
                           <span>{sub.label}</span>
                         </Link>
                       );
@@ -708,14 +772,15 @@ export default function Navbar() {
           })}
 
           {/* Mobile Language Selector & CTA */}
-          <div style={{ marginTop: '12px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div className="mobile-bottom-section" style={{ marginTop: '12px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 0' }}>
-              <span style={{ fontSize: '0.9rem', color: '#94A3B8' }}>Dil / Language / اللغة:</span>
+              <span className="mobile-lang-label" style={{ fontSize: '0.9rem', color: '#94A3B8' }}>Dil / Language / اللغة:</span>
               <div style={{ display: 'flex', gap: '8px' }}>
                 {languages.map((item) => (
                   <button
                     key={item.code}
                     type="button"
+                    className={`mobile-lang-btn ${lang === item.code ? 'active' : ''}`}
                     onClick={() => {
                       setLang(item.code);
                       setMobileMenuOpen(false);
@@ -723,9 +788,15 @@ export default function Navbar() {
                     style={{
                       padding: '6px 12px',
                       borderRadius: '6px',
-                      border: lang === item.code ? '1px solid var(--gold-400)' : '1px solid rgba(255,255,255,0.15)',
-                      background: lang === item.code ? 'var(--gradient-gold)' : 'rgba(15,25,46,0.8)',
-                      color: lang === item.code ? '#060911' : '#FFFFFF',
+                      border: lang === item.code
+                        ? '1px solid var(--gold-400)'
+                        : '1px solid rgba(255,255,255,0.15)',
+                      background: lang === item.code
+                        ? 'var(--gradient-gold)'
+                        : 'rgba(15,25,46,0.8)',
+                      color: lang === item.code
+                        ? '#060911'
+                        : '#FFFFFF',
                       fontSize: '0.82rem',
                       fontWeight: 700,
                       cursor: 'pointer',
@@ -735,6 +806,52 @@ export default function Navbar() {
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* Mobile Theme Switcher */}
+            <div className="mobile-theme-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', borderRadius: '8px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(212,175,55,0.2)' }}>
+              <span className="mobile-theme-label" style={{ fontSize: '0.86rem', color: '#CBD5E1' }}>
+                {lang === 'tr' ? 'Görünüm Teması' : lang === 'ar' ? 'المظهر' : 'Theme Mode'}
+              </span>
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="mobile-theme-btn"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '6px 14px',
+                  borderRadius: '6px',
+                  border: '1px solid rgba(212,175,55,0.4)',
+                  background: 'rgba(212,175,55,0.12)',
+                  color: 'var(--gold-400)',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                }}
+              >
+                <span className="theme-toggle-icon-dark" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
+                  <span>{lang === 'tr' ? 'Koyu Mod' : lang === 'ar' ? 'الليلي' : 'Dark'}</span>
+                </span>
+                <span className="theme-toggle-icon-light" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                  </svg>
+                  <span>{lang === 'tr' ? 'Açık Mod' : lang === 'ar' ? 'النهاري' : 'Light'}</span>
+                </span>
+              </button>
             </div>
 
             <Link
@@ -748,48 +865,7 @@ export default function Navbar() {
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        .dropdown-sub-item:hover {
-          background: rgba(212, 175, 55, 0.14) !important;
-          border-color: rgba(212, 175, 55, 0.3) !important;
-          transform: translateY(-1px);
-        }
-
-        @keyframes navFadeDown {
-          from {
-            opacity: 0;
-            transform: translateY(-6px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .lang-select-btn:hover {
-          border-color: var(--gold-400) !important;
-          background: rgba(212, 175, 55, 0.14) !important;
-          box-shadow: 0 4px 18px rgba(212, 175, 55, 0.25);
-        }
-        .lang-dropdown-item:hover {
-          background: rgba(212, 175, 55, 0.18) !important;
-          color: #FFFFFF !important;
-        }
-        @media (min-width: 1040px) {
-          .desktop-nav {
-            display: flex !important;
-          }
-          .mobile-toggle {
-            display: none !important;
-          }
-        }
-        @media (max-width: 640px) {
-          .cta-btn {
-            display: none !important;
-          }
-        }
-      `}</style>
     </header>
   );
 }
+

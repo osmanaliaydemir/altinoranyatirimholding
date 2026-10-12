@@ -5,10 +5,36 @@ import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function ChairmanSection() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
+
+  const pillars = {
+    tr: [
+      '%100 Yerli Sermaye',
+      '10 Grup Şirketi',
+      'Reel Sektör Gücü',
+      'Sürdürülebilir Büyüme',
+    ],
+    en: [
+      '100% Domestic Capital',
+      '10 Group Companies',
+      'Real Sector Strength',
+      'Sustainable Growth',
+    ],
+    ar: [
+      'رأس مال محلي 100%',
+      '10 شركات تابعة',
+      'قوة القطاع الحقيقي',
+      'نمو مستدام',
+    ],
+  }[lang] || [
+    '%100 Yerli Sermaye',
+    '10 Grup Şirketi',
+    'Reel Sektör Gücü',
+    'Sürdürülebilir Büyüme',
+  ];
 
   return (
-    <section style={{ padding: '100px 0', background: 'rgba(10, 16, 29, 0.6)', position: 'relative' }}>
+    <section className="chairman-section" style={{ padding: '100px 0', background: 'rgba(10, 16, 29, 0.6)', position: 'relative' }}>
       <div className="container">
         <div className="grid-2" style={{ alignItems: 'flex-start', gap: '48px' }}>
           {/* Visual: Chairman Portrait (16:9 complete background visible) */}
@@ -37,7 +63,7 @@ export default function ChairmanSection() {
 
             {/* Clean Caption Card Below Image - Unobstructed view of photo and background */}
             <div
-              className="glass-panel"
+              className="glass-panel chairman-card"
               style={{
                 marginTop: '18px',
                 padding: '20px 24px',
@@ -47,39 +73,61 @@ export default function ChairmanSection() {
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                <div style={{ color: 'var(--gold-300)', fontWeight: 700, fontSize: '1.2rem', fontFamily: 'var(--font-serif)' }}>
+                <div className="chairman-author-name" style={{ color: 'var(--gold-300)', fontWeight: 700, fontSize: '1.2rem', fontFamily: 'var(--font-serif)' }}>
                   {t.chairman.author}
                 </div>
                 <span className="badge" style={{ fontSize: '0.74rem', padding: '4px 10px' }}>
-                  Yönetim Kurulu
+                  {lang === 'tr' ? 'Yönetim Kurulu' : lang === 'ar' ? 'مجلس الإدارة' : 'Board of Directors'}
                 </span>
               </div>
-              <div style={{ color: '#94A3B8', fontSize: '0.86rem', marginBottom: '14px' }}>
+              <div className="chairman-role" style={{ color: '#94A3B8', fontSize: '0.86rem', marginBottom: '14px' }}>
                 {t.chairman.role} &bull; Altınoran Yatırım Holding
               </div>
 
               {/* Leadership Pillars */}
               <div
+                className="chairman-pillars"
                 style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(2, 1fr)',
                   gap: '10px',
-                  paddingTop: '12px',
+                  paddingTop: '14px',
                   borderTop: '1px solid rgba(255, 255, 255, 0.08)',
                 }}
               >
-                <div style={{ fontSize: '0.82rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ color: 'var(--gold-400)', fontWeight: 800 }}>✓</span> %100 Yerli Sermaye
-                </div>
-                <div style={{ fontSize: '0.82rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ color: 'var(--gold-400)', fontWeight: 800 }}>✓</span> 10 Grup Şirketi
-                </div>
-                <div style={{ fontSize: '0.82rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ color: 'var(--gold-400)', fontWeight: 800 }}>✓</span> Reel Sektör Gücü
-                </div>
-                <div style={{ fontSize: '0.82rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ color: 'var(--gold-400)', fontWeight: 800 }}>✓</span> Sürdürülebilir Büyüme
-                </div>
+                {pillars.map((text, i) => (
+                  <div
+                    key={i}
+                    className="chairman-pillar-item"
+                    style={{
+                      fontSize: '0.84rem',
+                      fontWeight: 600,
+                      color: '#E2E8F0',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      padding: '7px 10px',
+                      borderRadius: '8px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(255, 255, 255, 0.06)',
+                    }}
+                  >
+                    <span
+                      className="chairman-pillar-icon"
+                      style={{
+                        color: 'var(--gold-400)',
+                        fontWeight: 800,
+                        fontSize: '0.92rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      ✓
+                    </span>
+                    <span className="chairman-pillar-text">{text}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -119,6 +167,7 @@ export default function ChairmanSection() {
 
             {/* Blockquote with Golden Accents */}
             <div
+              className="chairman-quote-box"
               style={{
                 position: 'relative',
                 padding: '22px 26px',
@@ -146,7 +195,7 @@ export default function ChairmanSection() {
             </div>
 
             {/* Narrative Paragraphs */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', color: '#CBD5E1', fontSize: '0.98rem', lineHeight: 1.8 }}>
+            <div className="chairman-narrative" style={{ display: 'flex', flexDirection: 'column', gap: '16px', color: '#CBD5E1', fontSize: '0.98rem', lineHeight: 1.8 }}>
               {t.chairman.paragraphs.map((para: string, idx: number) => (
                 <p key={idx} style={{ margin: 0 }}>
                   {para}

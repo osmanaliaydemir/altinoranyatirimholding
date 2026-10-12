@@ -4,10 +4,12 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 import { SectorItem } from '@/data/translations';
 
 export default function Footer() {
   const { t, isRTL } = useLanguage();
+  const { isLight } = useTheme();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
 
@@ -21,6 +23,7 @@ export default function Footer() {
 
   return (
     <footer
+      className="site-footer"
       style={{
         background: '#04070D',
         borderTop: '1px solid rgba(212, 175, 55, 0.25)',
@@ -44,7 +47,7 @@ export default function Footer() {
           <div>
             <div style={{ marginBottom: '20px' }}>
               <Image
-                src="/images/logo.webp"
+                src={isLight ? '/images/logo-light.webp' : '/images/logo.webp'}
                 alt="Altınoran Yatırım Holding"
                 width={260}
                 height={54}
@@ -85,7 +88,7 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h4 style={{ fontSize: '1.05rem', color: '#FFFFFF', marginBottom: '20px', letterSpacing: '0.05em' }}>
+            <h4 style={{ fontSize: '1.05rem', color: 'var(--text-main)', marginBottom: '20px', letterSpacing: '0.05em' }}>
               {t.footer.quickLinks}
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', padding: 0 }}>
@@ -129,7 +132,7 @@ export default function Footer() {
 
           {/* Column 3: Sectors */}
           <div>
-            <h4 style={{ fontSize: '1.05rem', color: '#FFFFFF', marginBottom: '20px', letterSpacing: '0.05em' }}>
+            <h4 style={{ fontSize: '1.05rem', color: 'var(--text-main)', marginBottom: '20px', letterSpacing: '0.05em' }}>
               {t.footer.sectorsTitle}
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', padding: 0 }}>
@@ -145,10 +148,10 @@ export default function Footer() {
 
           {/* Column 4: Newsletter & Contact */}
           <div>
-            <h4 style={{ fontSize: '1.05rem', color: '#FFFFFF', marginBottom: '14px', letterSpacing: '0.05em' }}>
+            <h4 style={{ fontSize: '1.05rem', color: 'var(--text-main)', marginBottom: '14px', letterSpacing: '0.05em' }}>
               {t.footer.newsletterTitle}
             </h4>
-            <p style={{ color: '#94A3B8', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '18px' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '18px' }}>
               {t.footer.newsletterDesc}
             </p>
 
@@ -185,37 +188,22 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Legal Bar */}
+        {/* Bottom Copyright Bar */}
         <div
+          className="footer-bottom-bar"
           style={{
             borderTop: '1px solid rgba(255, 255, 255, 0.08)',
             paddingTop: '28px',
             display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             alignItems: 'center',
-            gap: '16px',
+            textAlign: 'center',
             fontSize: '0.84rem',
             color: '#64748B',
           }}
         >
           <div>
             © {new Date().getFullYear()} Altınoran Yatırım Holding A.Ş. {t.footer.rights}
-          </div>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-            <a href="#kvkk" onClick={(e) => { e.preventDefault(); alert(t.footer.kvkk); }} style={{ color: '#94A3B8', textDecoration: 'none' }}>
-              {t.footer.kvkk}
-            </a>
-            <a href="#gizlilik" onClick={(e) => { e.preventDefault(); alert(t.footer.privacy); }} style={{ color: '#94A3B8', textDecoration: 'none' }}>
-              {t.footer.privacy}
-            </a>
-            <a href="#kullanim" onClick={(e) => { e.preventDefault(); alert(t.footer.terms); }} style={{ color: '#94A3B8', textDecoration: 'none' }}>
-              {t.footer.terms}
-            </a>
-            <a href="#etik" onClick={(e) => { e.preventDefault(); alert(t.footer.ethics); }} style={{ color: '#94A3B8', textDecoration: 'none' }}>
-              {t.footer.ethics}
-            </a>
           </div>
         </div>
       </div>

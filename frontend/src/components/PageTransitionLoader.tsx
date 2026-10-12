@@ -2,19 +2,38 @@
 
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function PageTransitionLoader() {
   const pathname = usePathname();
+  const { isLight } = useTheme();
   const [loading, setLoading] = useState(false);
   const [fading, setFading] = useState(false);
+  const [lockedTheme, setLockedTheme] = useState<'light' | 'dark' | null>(null);
 
-  // When pathname changes, smoothly fade out the golden loader
+  // Helper to accurately determine the active theme from DOM/Storage/Context
+  const getCurrentTheme = (): 'light' | 'dark' => {
+    if (typeof window !== 'undefined') {
+      const docTheme = document.documentElement.getAttribute('data-theme');
+      if (docTheme === 'light' || docTheme === 'dark') return docTheme;
+      const saved = localStorage.getItem('altinoran_theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+    }
+    return isLight ? 'light' : 'dark';
+  };
+
+  // When pathname changes, smoothly fade out the golden loader and persist theme
   useEffect(() => {
     if (loading) {
+      if (typeof window !== 'undefined') {
+        const themeToKeep = lockedTheme || getCurrentTheme();
+        document.documentElement.setAttribute('data-theme', themeToKeep);
+      }
       setFading(true);
       const timer = setTimeout(() => {
         setLoading(false);
         setFading(false);
+        setLockedTheme(null);
       }, 420);
       return () => clearTimeout(timer);
     }
@@ -47,6 +66,8 @@ export default function PageTransitionLoader() {
 
         // Only trigger if going to a different route
         if (cleanCurrent !== cleanTarget) {
+          const activeTheme = getCurrentTheme();
+          setLockedTheme(activeTheme);
           setLoading(true);
           setFading(false);
         }
@@ -55,7 +76,7 @@ export default function PageTransitionLoader() {
 
     document.addEventListener('click', handleLinkClick);
     return () => document.removeEventListener('click', handleLinkClick);
-  }, [pathname]);
+  }, [pathname, isLight]);
 
   // Failsafe safety timeout (2.5s maximum) to prevent any stuck state
   useEffect(() => {
@@ -65,6 +86,7 @@ export default function PageTransitionLoader() {
         setTimeout(() => {
           setLoading(false);
           setFading(false);
+          setLockedTheme(null);
         }, 300);
       }, 2500);
       return () => clearTimeout(safetyTimer);
@@ -73,10 +95,13 @@ export default function PageTransitionLoader() {
 
   if (!loading) return null;
 
+  const isLoaderLight = (lockedTheme ?? getCurrentTheme()) === 'light';
+
   return (
     <aside
       role="status"
       aria-label="Yükleniyor"
+      className={`page-transition-loader ${isLoaderLight ? 'light-mode' : 'dark-mode'}`}
       style={{
         position: 'fixed',
         inset: 0,
@@ -84,7 +109,7 @@ export default function PageTransitionLoader() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'rgba(6, 9, 17, 0.94)',
+        background: isLoaderLight ? 'rgba(248, 250, 252, 0.96)' : 'rgba(6, 9, 17, 0.94)',
         backdropFilter: 'blur(24px)',
         WebkitBackdropFilter: 'blur(24px)',
         opacity: fading ? 0 : 1,
@@ -108,7 +133,9 @@ export default function PageTransitionLoader() {
           style={{
             position: 'absolute',
             inset: '-25px',
-            background: 'radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, transparent 70%)',
+            background: isLoaderLight
+              ? 'radial-gradient(circle, rgba(184, 134, 11, 0.22) 0%, transparent 70%)'
+              : 'radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, transparent 70%)',
             borderRadius: '50%',
             animation: 'phiAmbientPulse 1.618s ease-in-out infinite',
           }}
@@ -127,8 +154,8 @@ export default function PageTransitionLoader() {
         >
           <defs>
             <linearGradient id="phiLoaderGold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFFFFF" />
-              <stop offset="30%" stopColor="#F5DE94" />
+              <stop offset="0%" stopColor={isLoaderLight ? '#B8860B' : '#FFFFFF'} />
+              <stop offset="30%" stopColor={isLoaderLight ? '#D4AF37' : '#F5DE94'} />
               <stop offset="70%" stopColor="#D4AF37" />
               <stop offset="100%" stopColor="#9E7719" />
             </linearGradient>
@@ -143,7 +170,7 @@ export default function PageTransitionLoader() {
             cx="70"
             cy="70"
             r="60"
-            stroke="rgba(212, 175, 55, 0.16)"
+            stroke={isLoaderLight ? 'rgba(184, 134, 11, 0.22)' : 'rgba(212, 175, 55, 0.16)'}
             strokeWidth="1"
             strokeDasharray="4 6"
           />
@@ -151,14 +178,14 @@ export default function PageTransitionLoader() {
             cx="70"
             cy="70"
             r="37"
-            stroke="rgba(212, 175, 55, 0.26)"
+            stroke={isLoaderLight ? 'rgba(184, 134, 11, 0.35)' : 'rgba(212, 175, 55, 0.26)'}
             strokeWidth="1.2"
           />
           <circle
             cx="70"
             cy="70"
             r="23"
-            stroke="rgba(212, 175, 55, 0.38)"
+            stroke={isLoaderLight ? 'rgba(184, 134, 11, 0.48)' : 'rgba(212, 175, 55, 0.38)'}
             strokeWidth="1.4"
           />
 
@@ -177,75 +204,12 @@ export default function PageTransitionLoader() {
             cx="70"
             cy="70"
             r="4.5"
-            fill="#D4AF37"
+            fill={isLoaderLight ? '#B8860B' : '#D4AF37'}
             className="phi-center-node"
           />
         </svg>
       </div>
-
-      <style jsx>{`
-        .phi-loader-svg {
-          animation: phiSpin 16.18s linear infinite;
-        }
-
-        .phi-drawing-spiral {
-          stroke-dasharray: 380;
-          stroke-dashoffset: 380;
-          animation: phiDraw 1.618s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
-        }
-
-        .phi-center-node {
-          animation: phiPulseNode 1.618s ease-in-out infinite;
-          transform-origin: center center;
-        }
-
-        @keyframes phiSpin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-
-        @keyframes phiDraw {
-          0% {
-            stroke-dashoffset: 380;
-            opacity: 0.3;
-          }
-          50% {
-            stroke-dashoffset: 0;
-            opacity: 1;
-          }
-          100% {
-            stroke-dashoffset: -380;
-            opacity: 0.5;
-          }
-        }
-
-        @keyframes phiPulseNode {
-          0%, 100% {
-            transform: scale(0.85);
-            opacity: 0.6;
-          }
-          50% {
-            transform: scale(1.35);
-            opacity: 1;
-            filter: drop-shadow(0 0 8px #D4AF37);
-          }
-        }
-
-        @keyframes phiAmbientPulse {
-          0%, 100% {
-            opacity: 0.35;
-            transform: scale(0.92);
-          }
-          50% {
-            opacity: 0.9;
-            transform: scale(1.15);
-          }
-        }
-      `}</style>
     </aside>
   );
 }
+

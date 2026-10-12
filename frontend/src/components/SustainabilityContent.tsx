@@ -91,8 +91,8 @@ export default function SustainabilityContent() {
               >
                 E
               </div>
-              <h3 style={{ fontSize: '1.35rem', color: '#FFFFFF', marginBottom: '12px' }}>Çevresel Sorumluluk</h3>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px', color: '#94A3B8', fontSize: '0.92rem' }}>
+              <h3 style={{ fontSize: '1.35rem', color: 'var(--text-main)', marginBottom: '12px' }}>Çevresel Sorumluluk</h3>
+              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px', color: 'var(--text-muted)', fontSize: '0.92rem' }}>
                 <li>✓ Yıllık 850 GWh temiz elektrik üretimi</li>
                 <li>✓ Tüm kule ve yapılarda LEED Platinum / BREEAM sertifikası</li>
                 <li>✓ Su ayak izini azaltan gri su geri kazanım sistemleri</li>
@@ -108,7 +108,7 @@ export default function SustainabilityContent() {
                   borderRadius: '12px',
                   background: 'rgba(212, 175, 55, 0.15)',
                   border: '1px solid var(--gold-400)',
-                  color: 'var(--gold-300)',
+                  color: 'var(--gold-400)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -119,8 +119,8 @@ export default function SustainabilityContent() {
               >
                 S
               </div>
-              <h3 style={{ fontSize: '1.35rem', color: '#FFFFFF', marginBottom: '12px' }}>Sosyal Etki & İnsan</h3>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px', color: '#94A3B8', fontSize: '0.92rem' }}>
+              <h3 style={{ fontSize: '1.35rem', color: 'var(--text-main)', marginBottom: '12px' }}>Sosyal Etki & İnsan</h3>
+              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px', color: 'var(--text-muted)', fontSize: '0.92rem' }}>
                 <li>✓ Altınoran Eğitim Vakfı ile 1.500 üniversite bursu</li>
                 <li>✓ Üst yönetimde %48 kadın lider temsil oranı</li>
                 <li>✓ İş sağlığı ve güvenliğinde sıfır kaza hedefi</li>
@@ -147,8 +147,8 @@ export default function SustainabilityContent() {
               >
                 G
               </div>
-              <h3 style={{ fontSize: '1.35rem', color: '#FFFFFF', marginBottom: '12px' }}>Kurumsal Yönetişim</h3>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px', color: '#94A3B8', fontSize: '0.92rem' }}>
+              <h3 style={{ fontSize: '1.35rem', color: 'var(--text-main)', marginBottom: '12px' }}>Kurumsal Yönetişim</h3>
+              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px', color: 'var(--text-muted)', fontSize: '0.92rem' }}>
                 <li>✓ Bağımsız Yönetim Kurulu üyeleri denetimi</li>
                 <li>✓ Big Four bağımsız mali ve sürdürülebilirlik denetimi</li>
                 <li>✓ 7/24 anonim Etik ve Uyum İhbar Hattı</li>
@@ -175,11 +175,11 @@ export default function SustainabilityContent() {
                   borderTop: '3px solid var(--gold-400)',
                 }}
               >
-                <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--gold-300)', fontFamily: 'var(--font-serif)', marginBottom: '8px' }}>
+                <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--gold-400)', fontFamily: 'var(--font-serif)', marginBottom: '8px' }}>
                   {g.target}
                 </div>
-                <h4 style={{ fontSize: '1.15rem', color: '#FFFFFF', marginBottom: '8px' }}>{g.title}</h4>
-                <p style={{ color: '#94A3B8', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>{g.desc}</p>
+                <h4 style={{ fontSize: '1.15rem', color: 'var(--text-main)', marginBottom: '8px' }}>{g.title}</h4>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>{g.desc}</p>
               </div>
             ))}
           </div>

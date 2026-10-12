@@ -46,7 +46,7 @@ export default function NewsSection() {
                   style={{
                     fontSize: '1.22rem',
                     lineHeight: 1.45,
-                    color: '#FFFFFF',
+                    color: 'var(--text-main)',
                     marginBottom: '14px',
                     fontFamily: 'inherit',
                     fontWeight: 700,
@@ -55,12 +55,12 @@ export default function NewsSection() {
                   {news.title}
                 </h3>
 
-                <p style={{ color: '#94A3B8', fontSize: '0.92rem', lineHeight: 1.7, margin: 0 }}>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: 1.7, margin: 0 }}>
                   {news.summary}
                 </p>
               </div>
 
-              <div style={{ marginTop: '24px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ marginTop: '24px', paddingTop: '16px', borderTop: '1px solid var(--border-subtle)' }}>
                 <a
                   href="#haber-detay"
                   onClick={(e: React.MouseEvent) => {

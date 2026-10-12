@@ -60,12 +60,12 @@ export default function KeyMetricsSection() {
                   )}
                 </div>
 
-                <h3 style={{ fontSize: '1.18rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '1.18rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '8px' }}>
                   {item.label}
                 </h3>
               </div>
 
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '14px', margin: 0 }}>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', borderTop: '1px solid var(--border-subtle)', paddingTop: '14px', margin: 0 }}>
                 {item.description}
               </p>
             </div>

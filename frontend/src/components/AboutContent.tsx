@@ -58,11 +58,11 @@ export default function AboutContent() {
                   >
                     {item.year}
                   </div>
-                  <h3 style={{ fontSize: '1.1rem', color: '#FFFFFF', marginBottom: '8px' }}>
+                  <h3 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>
                     {item.title}
                   </h3>
                 </div>
-                <p style={{ color: '#94A3B8', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
                   {item.desc}
                 </p>
               </div>

@@ -51,6 +51,7 @@ export const metadata: Metadata = {
   },
 };
 
+import { ThemeProvider } from "@/context/ThemeContext";
 import PageTransitionLoader from "@/components/PageTransitionLoader";
 import FloatingActions from "@/components/FloatingActions";
 
@@ -60,17 +61,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr">
+    <html lang="tr" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('altinoran_theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+          }}
+        />
       </head>
       <body>
         <JsonLd />
-        <PageTransitionLoader />
-        <LanguageProvider>
-          {children}
-          <FloatingActions />
-        </LanguageProvider>
+        <ThemeProvider>
+          <PageTransitionLoader />
+          <LanguageProvider>
+            {children}
+            <FloatingActions />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

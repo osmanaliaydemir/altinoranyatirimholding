@@ -203,7 +203,7 @@ export default function SubsidiariesContent() {
                 <h3 style={{ fontSize: '1.5rem', marginBottom: '8px' }}>
                   <Link
                     href={`/subsidiaries/${c.slug}/`}
-                    style={{ color: '#FFFFFF', textDecoration: 'none', transition: 'color 0.2s ease' }}
+                    style={{ color: 'var(--text-main)', textDecoration: 'none', transition: 'color 0.2s ease' }}
                   >
                     {c.name}
                   </Link>
@@ -213,7 +213,7 @@ export default function SubsidiariesContent() {
                   {c.location}
                 </div>
 
-                <p style={{ color: '#94A3B8', fontSize: '0.95rem', lineHeight: 1.7, margin: '0 0 20px' }}>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.7, margin: '0 0 20px' }}>
                   {c.desc}
                 </p>
               </div>
@@ -224,12 +224,12 @@ export default function SubsidiariesContent() {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   paddingTop: '16px',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderTop: '1px solid var(--border-subtle)',
                   gap: '12px',
                   flexWrap: 'wrap',
                 }}
               >
-                <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--gold-300)', fontFamily: 'var(--font-serif)' }}>
+                <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--gold-400)', fontFamily: 'var(--font-serif)' }}>
                   {c.keyMetric}
                 </div>
                 <Link

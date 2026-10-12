@@ -52,12 +52,12 @@ export default function ContactSection() {
               className="glass-panel"
               style={{
                 padding: '40px',
-                border: '1px solid rgba(212, 175, 55, 0.35)',
-                background: 'linear-gradient(135deg, rgba(16, 26, 48, 0.9) 0%, rgba(8, 14, 26, 0.95) 100%)',
+                border: '1px solid var(--border-gold)',
+                background: 'var(--bg-cta, linear-gradient(135deg, rgba(16, 26, 48, 0.9) 0%, rgba(8, 14, 26, 0.95) 100%))',
                 marginBottom: '28px',
               }}
             >
-              <h3 style={{ fontSize: '1.4rem', color: '#FFFFFF', marginBottom: '28px' }}>
+              <h3 style={{ fontSize: '1.4rem', color: 'var(--text-main)', marginBottom: '28px' }}>
                 {t.contact.addressLabel}
               </h3>
 
@@ -83,8 +83,8 @@ export default function ContactSection() {
                     </svg>
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--gold-300)', fontWeight: 600 }}>{t.contact.addressLabel}</div>
-                    <div style={{ color: '#E2E8F0', fontSize: '0.95rem', marginTop: '2px', lineHeight: 1.6 }}>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--gold-400)', fontWeight: 600 }}>{t.contact.addressLabel}</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginTop: '2px', lineHeight: 1.6 }}>
                       {t.contact.address}
                     </div>
                   </div>
@@ -110,10 +110,10 @@ export default function ContactSection() {
                     </svg>
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--gold-300)', fontWeight: 600 }}>{t.contact.phoneLabel}</div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--gold-400)', fontWeight: 600 }}>{t.contact.phoneLabel}</div>
                     <a
                       href="tel:+902164551414"
-                      style={{ color: '#FFFFFF', fontSize: '1.05rem', fontWeight: 600, textDecoration: 'none', display: 'inline-block', marginTop: '2px' }}
+                      style={{ color: 'var(--text-main)', fontSize: '1.05rem', fontWeight: 600, textDecoration: 'none', display: 'inline-block', marginTop: '2px' }}
                     >
                       {t.contact.phone}
                     </a>
@@ -141,10 +141,10 @@ export default function ContactSection() {
                     </svg>
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--gold-300)', fontWeight: 600 }}>{t.contact.emailLabel}</div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--gold-400)', fontWeight: 600 }}>{t.contact.emailLabel}</div>
                     <a
                       href="mailto:info@altinoranyatirimholding.com.tr"
-                      style={{ color: '#FFFFFF', fontSize: '1rem', textDecoration: 'none', display: 'inline-block', marginTop: '2px' }}
+                      style={{ color: 'var(--text-main)', fontSize: '1rem', textDecoration: 'none', display: 'inline-block', marginTop: '2px' }}
                     >
                       {t.contact.email}
                     </a>
@@ -204,14 +204,14 @@ export default function ContactSection() {
             className="glass-panel"
             style={{
               padding: '40px',
-              border: '1px solid rgba(212, 175, 55, 0.4)',
-              background: 'linear-gradient(135deg, rgba(16, 26, 48, 0.9) 0%, rgba(8, 14, 26, 0.95) 100%)',
+              border: '1px solid var(--border-gold)',
+              background: 'var(--bg-cta, linear-gradient(135deg, rgba(16, 26, 48, 0.9) 0%, rgba(8, 14, 26, 0.95) 100%))',
             }}
           >
-            <h3 style={{ fontSize: '1.5rem', color: '#FFFFFF', marginBottom: '8px' }}>
+            <h3 style={{ fontSize: '1.5rem', color: 'var(--text-main)', marginBottom: '8px' }}>
               {t.contact.formTitle}
             </h3>
-            <p style={{ color: '#94A3B8', fontSize: '0.92rem', marginBottom: '28px' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', marginBottom: '28px' }}>
               {t.contact.formSubtitle}
             </p>
 
@@ -230,8 +230,8 @@ export default function ContactSection() {
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </div>
-                <h4 style={{ fontSize: '1.25rem', color: '#FFFFFF', marginBottom: '8px' }}>Başarılı!</h4>
-                <p style={{ color: '#CBD5E1', fontSize: '0.95rem', margin: 0 }}>
+                <h4 style={{ fontSize: '1.25rem', color: 'var(--text-main)', marginBottom: '8px' }}>Başarılı!</h4>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0 }}>
                   {t.contact.successMessage}
                 </p>
                 <button

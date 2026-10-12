@@ -362,7 +362,7 @@ export default function SectorsContent() {
                       boxShadow: '0 0 10px var(--gold-400)',
                     }}
                   />
-                  <span style={{ fontSize: '0.86rem', color: '#FFFFFF', fontWeight: 600 }}>
+                  <span style={{ fontSize: '0.86rem', color: 'var(--text-main)', fontWeight: 600 }}>
                     Altınoran Yatırım Holding
                   </span>
                 </div>
@@ -377,7 +377,7 @@ export default function SectorsContent() {
                   style={{
                     padding: '6px 16px',
                     fontSize: '0.84rem',
-                    color: 'var(--gold-300)',
+                    color: 'var(--gold-400)',
                     borderColor: 'rgba(212, 175, 55, 0.35)',
                     background: 'rgba(212, 175, 55, 0.08)',
                   }}
@@ -389,7 +389,7 @@ export default function SectorsContent() {
               <h2
                 style={{
                   fontSize: '2.3rem',
-                  color: '#FFFFFF',
+                  color: 'var(--text-main)',
                   marginBottom: '18px',
                   lineHeight: 1.25,
                   fontWeight: 700,
@@ -400,7 +400,7 @@ export default function SectorsContent() {
 
               <p
                 style={{
-                  color: '#E2E8F0',
+                  color: 'var(--text-muted)',
                   fontSize: '1.08rem',
                   lineHeight: 1.8,
                   marginBottom: '28px',
@@ -417,9 +417,9 @@ export default function SectorsContent() {
                   gap: '16px',
                   marginBottom: '30px',
                   padding: '22px 24px',
-                  background: 'rgba(10, 16, 29, 0.75)',
+                  background: 'var(--bg-hud)',
                   borderRadius: 'var(--radius-md)',
-                  border: '1px solid rgba(212, 175, 55, 0.22)',
+                  border: '1px solid var(--border-gold)',
                 }}
               >
                 {activeSector.stats.map((st: { label: string; value: string }, i: number) => (
@@ -428,14 +428,14 @@ export default function SectorsContent() {
                       style={{
                         fontSize: '1.75rem',
                         fontWeight: 800,
-                        color: 'var(--gold-300)',
+                        color: 'var(--gold-400)',
                         fontFamily: 'var(--font-serif)',
                         marginBottom: '4px',
                       }}
                     >
                       {st.value}
                     </div>
-                    <div style={{ fontSize: '0.86rem', color: '#94A3B8' }}>
+                    <div style={{ fontSize: '0.86rem', color: 'var(--text-muted)' }}>
                       {st.label}
                     </div>
                   </div>
